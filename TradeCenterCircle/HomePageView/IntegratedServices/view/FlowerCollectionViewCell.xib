@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FlowerCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2em-Tb-nL6">
+                        <rect key="frame" x="0.0" y="0.0" width="140" height="35"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="2em-Tb-nL6" secondAttribute="trailing" id="1lg-oj-QRC"/>
+                <constraint firstItem="2em-Tb-nL6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ixn-Bh-266"/>
+                <constraint firstItem="2em-Tb-nL6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fdb-7I-bPx"/>
+                <constraint firstAttribute="bottom" secondItem="2em-Tb-nL6" secondAttribute="bottom" id="g5X-R4-A3q"/>
+            </constraints>
+            <size key="customSize" width="140" height="35"/>
+            <connections>
+                <outlet property="headerBtnLab" destination="2em-Tb-nL6" id="Dtf-PT-25a"/>
+            </connections>
+            <point key="canvasLocation" x="260" y="341.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
