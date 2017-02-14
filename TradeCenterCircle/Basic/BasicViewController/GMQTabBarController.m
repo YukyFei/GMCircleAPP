@@ -10,7 +10,9 @@
 #import "GMQNavigationController.h"
 #import "HomeViewController.h"
 #import "ShopCartViewController.h"
-#import "OpenDoorViewController.h"
+//#import "OpenDoorViewController.h"
+#import "GMQOpenDoorController.h"
+
 #import "MineViewController.h"
 #import "MyShopCartViewController.h"
 
@@ -34,9 +36,12 @@
     GMQNavigationController *navHome = [[GMQNavigationController alloc] initWithRootViewController:homeView];
     
     //开门
-    OpenDoorViewController *opendoorView = [[OpenDoorViewController alloc] init];
-    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
+//    OpenDoorViewController *opendoorView = [[OpenDoorViewController alloc] init];
+//    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
 
+    GMQOpenDoorController *opendoorView = [[GMQOpenDoorController alloc] init];
+    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
+    
     //购物车
     MyShopCartViewController *shopView = [[MyShopCartViewController alloc] init];
     GMQNavigationController *navShopCart = [[GMQNavigationController alloc] initWithRootViewController:shopView];

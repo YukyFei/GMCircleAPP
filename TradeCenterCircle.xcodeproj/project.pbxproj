@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0256BB0A1E51AABA00476DC0 /* libBabyBluetooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0256BB091E51AABA00476DC0 /* libBabyBluetooth.a */; };
+		0256BB1C1E51AAC700476DC0 /* AccessDoor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB101E51AAC700476DC0 /* AccessDoor.m */; };
+		0256BB1D1E51AAC700476DC0 /* MsgPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB121E51AAC700476DC0 /* MsgPlaySound.m */; };
+		0256BB1E1E51AAC700476DC0 /* NearbyPeripheralInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB141E51AAC700476DC0 /* NearbyPeripheralInfo.m */; };
+		0256BB1F1E51AAC700476DC0 /* OpenDoorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB171E51AAC700476DC0 /* OpenDoorTool.m */; };
+		0256BB201E51AAC700476DC0 /* BTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB1A1E51AAC700476DC0 /* BTCell.m */; };
+		0256BB291E51B12000476DC0 /* GMQOpenDoorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */; };
+		0256BB2C1E51B26F00476DC0 /* GMQOpenDoorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */; };
 		330ADBC81D8FD69F0066A20E /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 330ADBC71D8FD69F0066A20E /* UserInfo.m */; };
 		333D485C1D6FE539004E1F84 /* MyExpressFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333D485B1D6FE539004E1F84 /* MyExpressFeeModel.m */; };
 		333F6D371D5C0C2F0021A2FD /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333F6D361D5C0C2F0021A2FD /* HomeCell.m */; };
@@ -308,6 +316,7 @@
 		B6EA93EF1D7FEAAB00BD0FA0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B6EA93E91D7FEAAB00BD0FA0 /* README.txt */; };
 		B9B7E23D1DD5785A00E0658E /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7E23C1DD5785A00E0658E /* HouseholdViewController.m */; };
 		B9B7E2401DD5986400E0658E /* GYCustomActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B7E23F1DD5986400E0658E /* GYCustomActionSheetView.m */; };
+		C252248198ED95B08A1851F1 /* libPods-TradeCenterCircle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F00165D57D921C5B2E3B5E9 /* libPods-TradeCenterCircle.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,6 +337,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0256BB091E51AABA00476DC0 /* libBabyBluetooth.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBabyBluetooth.a; sourceTree = "<group>"; };
+		0256BB0F1E51AAC700476DC0 /* AccessDoor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessDoor.h; sourceTree = "<group>"; };
+		0256BB101E51AAC700476DC0 /* AccessDoor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessDoor.m; sourceTree = "<group>"; };
+		0256BB111E51AAC700476DC0 /* MsgPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPlaySound.h; sourceTree = "<group>"; };
+		0256BB121E51AAC700476DC0 /* MsgPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgPlaySound.m; sourceTree = "<group>"; };
+		0256BB131E51AAC700476DC0 /* NearbyPeripheralInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPeripheralInfo.h; sourceTree = "<group>"; };
+		0256BB141E51AAC700476DC0 /* NearbyPeripheralInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPeripheralInfo.m; sourceTree = "<group>"; };
+		0256BB161E51AAC700476DC0 /* OpenDoorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDoorTool.h; sourceTree = "<group>"; };
+		0256BB171E51AAC700476DC0 /* OpenDoorTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDoorTool.m; sourceTree = "<group>"; };
+		0256BB191E51AAC700476DC0 /* BTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCell.h; sourceTree = "<group>"; };
+		0256BB1A1E51AAC700476DC0 /* BTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCell.m; sourceTree = "<group>"; };
+		0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMQOpenDoorController.xib; sourceTree = "<group>"; };
+		0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMQOpenDoorController.h; sourceTree = "<group>"; };
+		0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMQOpenDoorController.m; sourceTree = "<group>"; };
 		330ADBC61D8FD69F0066A20E /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		330ADBC71D8FD69F0066A20E /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		333D485A1D6FE539004E1F84 /* MyExpressFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyExpressFeeModel.h; sourceTree = "<group>"; };
@@ -656,6 +679,9 @@
 		33E081211E0A254D00436420 /* MallFoodListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallFoodListCell.m; sourceTree = "<group>"; };
 		33E081231E0A255600436420 /* MallFoodListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallFoodListModel.h; sourceTree = "<group>"; };
 		33E081241E0A255600436420 /* MallFoodListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallFoodListModel.m; sourceTree = "<group>"; };
+		532D387EAEBCBD9F4CA7BE8C /* Pods-TradeCenterCircle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeCenterCircle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TradeCenterCircle/Pods-TradeCenterCircle.debug.xcconfig"; sourceTree = "<group>"; };
+		6A8F49C698B8515C68E1E73A /* Pods-TradeCenterCircle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TradeCenterCircle.release.xcconfig"; path = "Pods/Target Support Files/Pods-TradeCenterCircle/Pods-TradeCenterCircle.release.xcconfig"; sourceTree = "<group>"; };
+		9F00165D57D921C5B2E3B5E9 /* libPods-TradeCenterCircle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TradeCenterCircle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61A42AB1D6FD93D00C241AF /* FlowerPicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerPicModel.h; sourceTree = "<group>"; };
 		B61A42AC1D6FD93D00C241AF /* FlowerPicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerPicModel.m; sourceTree = "<group>"; };
 		B61A42AE1D7023E400C241AF /* MyAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressModel.h; sourceTree = "<group>"; };
@@ -923,6 +949,7 @@
 			files = (
 				B67AE5DD1D86537C00603987 /* CoreFoundation.framework in Frameworks */,
 				B67AE5D91D86528D00603987 /* CoreTelephony.framework in Frameworks */,
+				0256BB0A1E51AABA00476DC0 /* libBabyBluetooth.a in Frameworks */,
 				B6EA93DE1D7FE90F00BD0FA0 /* Security.framework in Frameworks */,
 				B6EA93ED1D7FEAAB00BD0FA0 /* libWeChatSDK.a in Frameworks */,
 				B6EA93DC1D7FE86600BD0FA0 /* SystemConfiguration.framework in Frameworks */,
@@ -930,6 +957,7 @@
 				B6EA93D81D7FE84500BD0FA0 /* libc++.tbd in Frameworks */,
 				B6EA93D61D7FE83000BD0FA0 /* libz.tbd in Frameworks */,
 				3348B0A61D65AD330062A320 /* libUMessage_Sdk_1.3.0.a in Frameworks */,
+				C252248198ED95B08A1851F1 /* libPods-TradeCenterCircle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +978,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0256BB0B1E51AAC700476DC0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */,
+				0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */,
+				0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0256BB0E1E51AAC700476DC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0256BB0F1E51AAC700476DC0 /* AccessDoor.h */,
+				0256BB101E51AAC700476DC0 /* AccessDoor.m */,
+				0256BB111E51AAC700476DC0 /* MsgPlaySound.h */,
+				0256BB121E51AAC700476DC0 /* MsgPlaySound.m */,
+				0256BB131E51AAC700476DC0 /* NearbyPeripheralInfo.h */,
+				0256BB141E51AAC700476DC0 /* NearbyPeripheralInfo.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0256BB151E51AAC700476DC0 /* OpenDoorTool */ = {
+			isa = PBXGroup;
+			children = (
+				0256BB161E51AAC700476DC0 /* OpenDoorTool.h */,
+				0256BB171E51AAC700476DC0 /* OpenDoorTool.m */,
+			);
+			path = OpenDoorTool;
+			sourceTree = "<group>";
+		};
+		0256BB181E51AAC700476DC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0256BB191E51AAC700476DC0 /* BTCell.h */,
+				0256BB1A1E51AAC700476DC0 /* BTCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		333F6D3D1D5C596C0021A2FD /* DeliciousFood */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1189,11 @@
 		3358E9941D7D51BD00075D33 /* OpenDoor */ = {
 			isa = PBXGroup;
 			children = (
+				0256BB091E51AABA00476DC0 /* libBabyBluetooth.a */,
+				0256BB0B1E51AAC700476DC0 /* Controllers */,
+				0256BB0E1E51AAC700476DC0 /* Models */,
+				0256BB151E51AAC700476DC0 /* OpenDoorTool */,
+				0256BB181E51AAC700476DC0 /* Views */,
 				3358E9951D7D51D100075D33 /* OpenDoorViewController.h */,
 				3358E9961D7D51D100075D33 /* OpenDoorViewController.m */,
 			);
@@ -1140,6 +1214,8 @@
 				335BC02D1D597EE300D4ABF1 /* TradeCenterCircleTests */,
 				335BC0381D597EE300D4ABF1 /* TradeCenterCircleUITests */,
 				335BC0121D597EE300D4ABF1 /* Products */,
+				FF318FA86E6112B2140AB544 /* Pods */,
+				6DF9F8370EA391E22C433A52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1874,6 +1950,14 @@
 			path = TheChain;
 			sourceTree = "<group>";
 		};
+		6DF9F8370EA391E22C433A52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F00165D57D921C5B2E3B5E9 /* libPods-TradeCenterCircle.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B61AD2BC1D62F1E800A46AFB /* WebviewService */ = {
 			isa = PBXGroup;
 			children = (
@@ -2422,6 +2506,15 @@
 			path = SDKExport;
 			sourceTree = "<group>";
 		};
+		FF318FA86E6112B2140AB544 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				532D387EAEBCBD9F4CA7BE8C /* Pods-TradeCenterCircle.debug.xcconfig */,
+				6A8F49C698B8515C68E1E73A /* Pods-TradeCenterCircle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2429,9 +2522,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 335BC03E1D597EE300D4ABF1 /* Build configuration list for PBXNativeTarget "TradeCenterCircle" */;
 			buildPhases = (
+				C60CF2D1100B8E162F5A1EE3 /* [CP] Check Pods Manifest.lock */,
 				335BC00D1D597EE300D4ABF1 /* Sources */,
 				335BC00E1D597EE300D4ABF1 /* Frameworks */,
 				335BC00F1D597EE300D4ABF1 /* Resources */,
+				7B8BE8373C01AFF883333DAC /* [CP] Embed Pods Frameworks */,
+				E9769F7826FCEAF42D37346F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2489,7 +2585,7 @@
 				TargetAttributes = {
 					335BC0101D597EE300D4ABF1 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 6TW7VRG635;
+						DevelopmentTeam = 7GLH8K6J8U;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2541,6 +2637,7 @@
 				335BC0211D597EE300D4ABF1 /* Assets.xcassets in Resources */,
 				3371CB491D5AFAEB00338D70 /* LICENSE in Resources */,
 				3371D7E11D5B364000338D70 /* LICENSE in Resources */,
+				0256BB291E51B12000476DC0 /* GMQOpenDoorController.xib in Resources */,
 				B61AD2BB1D62E9AB00A46AFB /* FlowerServiceViewCell.xib in Resources */,
 				334895811D7681230031399C /* FontSize.plist in Resources */,
 				B66A76AC1D61C48D00EB2CD2 /* FlowerCollectionViewCell.xib in Resources */,
@@ -2581,6 +2678,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B8BE8373C01AFF883333DAC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TradeCenterCircle/Pods-TradeCenterCircle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C60CF2D1100B8E162F5A1EE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E9769F7826FCEAF42D37346F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TradeCenterCircle/Pods-TradeCenterCircle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		335BC00D1D597EE300D4ABF1 /* Sources */ = {
@@ -2625,6 +2770,7 @@
 				B6A900C61D5C642000491307 /* UILabel+Factory.m in Sources */,
 				B66896DD1DFF9FE8006E064E /* HomeNoticeModel.m in Sources */,
 				B671C5501DD319FB009D92CE /* TapImgView.m in Sources */,
+				0256BB2C1E51B26F00476DC0 /* GMQOpenDoorController.m in Sources */,
 				3374E6161D5D9E80005CC42A /* GMQWebView.m in Sources */,
 				333F6D761D5C82EB0021A2FD /* IntegratedServicesCell.m in Sources */,
 				3374E61A1D5DA38F005CC42A /* MyExpressFeeViewController.m in Sources */,
@@ -2639,6 +2785,7 @@
 				3371CB571D5AFC3A00338D70 /* GMQBasicModel.m in Sources */,
 				338578DB1D7EB111001C4B88 /* ReceiveCouponCell.m in Sources */,
 				3371D7E41D5B364000338D70 /* SDImageCache.m in Sources */,
+				0256BB1D1E51AAC700476DC0 /* MsgPlaySound.m in Sources */,
 				3371D7E31D5B364000338D70 /* NSData+ImageContentType.m in Sources */,
 				B671C5441DD31959009D92CE /* VCAssetsPicker.m in Sources */,
 				3371CB7C1D5AFCFC00338D70 /* UIView+MJExtension.m in Sources */,
@@ -2729,12 +2876,14 @@
 				B626A0EE1D65888600106FE3 /* LogisticSuccessController.m in Sources */,
 				3371CB761D5AFCFC00338D70 /* MJRefreshGifHeader.m in Sources */,
 				B61A42B01D7023E400C241AF /* MyAddressModel.m in Sources */,
+				0256BB1F1E51AAC700476DC0 /* OpenDoorTool.m in Sources */,
 				B671C56E1DD31CEF009D92CE /* MASCompositeConstraint.m in Sources */,
 				330ADBC81D8FD69F0066A20E /* UserInfo.m in Sources */,
 				B671C5321DD309B4009D92CE /* VShowImgs.m in Sources */,
 				B671C54F1DD319FB009D92CE /* BrowserScroView.m in Sources */,
 				B671C51D1DD2FB31009D92CE /* BaoShiViewController.m in Sources */,
 				B671059C1DD5723C005BAF5F /* YMTableView.m in Sources */,
+				0256BB1E1E51AAC700476DC0 /* NearbyPeripheralInfo.m in Sources */,
 				3358E9931D7D194000075D33 /* SegmentSelectView.m in Sources */,
 				B61E4EC41D646092008440F3 /* LogisticTypeModel.m in Sources */,
 				B671C5471DD31970009D92CE /* UIButtonExt.m in Sources */,
@@ -2775,6 +2924,7 @@
 				3371D7AE1D5B255800338D70 /* IQUIViewController+Additions.m in Sources */,
 				336A85671D6B062F00C76DF9 /* OrderDetailListCell.m in Sources */,
 				B6B17FA71D5DD9740095D2D5 /* ParkInfoPICController.m in Sources */,
+				0256BB1C1E51AAC700476DC0 /* AccessDoor.m in Sources */,
 				335BC0161D597EE300D4ABF1 /* main.m in Sources */,
 				3371CBA31D5B023A00338D70 /* CoreAnimationEffect.m in Sources */,
 				333F6D541D5C5BB40021A2FD /* IntegratedServicesViewController.m in Sources */,
@@ -2785,6 +2935,7 @@
 				B67105A61DD57341005BAF5F /* ForMeServiceCell.m in Sources */,
 				3371CB4A1D5AFAEB00338D70 /* README.md in Sources */,
 				335BC05F1D5984D200D4ABF1 /* ShopCartViewController.m in Sources */,
+				0256BB201E51AAC700476DC0 /* BTCell.m in Sources */,
 				B699154D1D74105700D6CC3E /* MyAddresseViewCell.m in Sources */,
 				B67105A31DD572E5005BAF5F /* AffairRecordItem.m in Sources */,
 				3371CB3F1D5AFAEB00338D70 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -2946,7 +3097,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "24b333f0-09a1-4fac-8b1f-5aff4ee095a1";
+				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2986,7 +3137,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "24b333f0-09a1-4fac-8b1f-5aff4ee095a1";
+				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -2995,12 +3146,13 @@
 		};
 		335BC03F1D597EE300D4ABF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 532D387EAEBCBD9F4CA7BE8C /* Pods-TradeCenterCircle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = TradeCenterCircle/TradeCenterCircle.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
 				DEVELOPMENT_TEAM = 6TW7VRG635;
 				ENABLE_BITCODE = NO;
@@ -3016,10 +3168,11 @@
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/WXApi.h\"",
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/WXApiObject.h\"",
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/libWeChatSDK.a\"",
+					"$(PROJECT_DIR)/TradeCenterCircle/HomePageView/OpenDoor",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Dms365.GMQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24b333f0-09a1-4fac-8b1f-5aff4ee095a1";
+				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
 				PROVISIONING_PROFILE_SPECIFIER = producti;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3027,12 +3180,13 @@
 		};
 		335BC0401D597EE300D4ABF1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A8F49C698B8515C68E1E73A /* Pods-TradeCenterCircle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_ENTITLEMENTS = TradeCenterCircle/TradeCenterCircle.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
 				DEVELOPMENT_TEAM = 6TW7VRG635;
 				ENABLE_BITCODE = NO;
@@ -3048,10 +3202,11 @@
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/WXApi.h\"",
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/WXApiObject.h\"",
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/libWeChatSDK.a\"",
+					"$(PROJECT_DIR)/TradeCenterCircle/HomePageView/OpenDoor",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Dms365.GMQ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24b333f0-09a1-4fac-8b1f-5aff4ee095a1";
+				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
 				PROVISIONING_PROFILE_SPECIFIER = producti;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

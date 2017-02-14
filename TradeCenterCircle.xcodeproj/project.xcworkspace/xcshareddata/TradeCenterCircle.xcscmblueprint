@@ -1,20 +1,28 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1B4CF6757A0D96DD27F06803384D1359B095E807",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "df8ccf17-0ed3-406e-b8a5-0697ebb1a4b6++1860" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "df8ccf17-0ed3-406e-b8a5-0697ebb1a4b6++1860" : 0
+    "df8ccf17-0ed3-406e-b8a5-0697ebb1a4b6++1860" : 0,
+    "1B4CF6757A0D96DD27F06803384D1359B095E807" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E73269BD-6BC2-47CD-A880-1820606F5768",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "df8ccf17-0ed3-406e-b8a5-0697ebb1a4b6++1860" : "TradeCenterCircle\/"
+    "df8ccf17-0ed3-406e-b8a5-0697ebb1a4b6++1860" : "TradeCenterCircle\/",
+    "1B4CF6757A0D96DD27F06803384D1359B095E807" : "GMCircleApp\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TradeCenterCircle",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TradeCenterCircle.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YukyFei\/GMCircleAPP.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1B4CF6757A0D96DD27F06803384D1359B095E807"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/yang.li@192.168.0.35\/SshyYjy",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
