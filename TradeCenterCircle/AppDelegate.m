@@ -21,6 +21,8 @@
 #import "MyBaoshiViewController.h"
 #import "MyShopCartViewController.h"
 
+#import <AudioToolbox/AudioToolbox.h>
+
 @interface AppDelegate ()<WXApiDelegate,UIAlertViewDelegate>
 {
     UIImageView *bgImageView  ;
@@ -73,6 +75,21 @@
     [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:5];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
 
+    
+#warning ------BluetoothInit-------
+    
+    [self bluetoothInit];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bluetoothOpenDoorSuccess) name:@"bluetoothOpenDoorSuccess" object:nil];
+
+    if ([self bluetoothStartOpenDoor]) {
+        
+        NSLog(@"开始监控");
+    }
+    else
+        NSLog(@"未处于登录状态，或者没有注册要监控的区域");
+    
+    
     return YES;
 }
 
@@ -99,7 +116,64 @@
                                              selector:@selector(switchUserLogin)
                                                  name:KNotificationSwitchUserLogin object:nil];
 }
+#pragma mark 蓝牙设置
+- (void)bluetoothInit {
 
+    _openDoorTool = [OpenDoorTool shareOpenDoorTool];
+    //    openDoorTool.delegate = self;
+    
+    _openDoorTool.scanOptions = @{
+                                  CBCentralManagerScanOptionAllowDuplicatesKey:@YES
+                                  };
+    _openDoorTool.connectOptions = @{
+                                     CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES
+                                     };
+    
+    
+    _openDoorTool.serviceStr = [SERVICE_UUID uppercaseString];
+    _openDoorTool.readCharacterisicStr = [NOTIFY_UUID uppercaseString];
+    _openDoorTool.writeCharacterisicStr = [WRITE_UUID uppercaseString];
+    
+}
+
+// 开始扫描
+- (BOOL)bluetoothStartOpenDoor
+{
+    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
+    if (loginStatus) {
+        
+        if (self.openDoorTool.mBeaconRegions.count) {
+            
+            self.openDoorTool.isAccreditedBeaconRegion = YES; //授权可以监控ibeacon
+            [self.openDoorTool beginMonitorBeacon];
+            return YES;
+        }
+        
+    }
+    return NO;
+}
+
+// beacon结束监控
+- (BOOL)bluetoothStopOpenDoor
+{
+    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
+    if (loginStatus) {
+        return NO;
+    }
+    [self.openDoorTool stopMonitorForRegion:nil];
+    return YES;
+}
+
+- (void)bluetoothOpenDoorSuccess
+{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
+/**
+ *  根据登录状态，跳转不同界面
+ */
 -(void)configAppAction
 {
     BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
@@ -679,9 +753,40 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+#pragma mark ---  蓝牙后台运行设置
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+    NSLog(@"后台");
+    
+    if ([_openDoorTool.babyBlueTooth.centralManager isScanning]) {
+        
+        [_openDoorTool.babyBlueTooth cancelScan];
+    }
+    if([_openDoorTool.babyBlueTooth findConnectedPeripherals].count)
+    {
+        [_openDoorTool.babyBlueTooth cancelAllPeripheralsConnection];
+    }
+    
+    
+    UIApplication*   app = [UIApplication sharedApplication];
+    __block    UIBackgroundTaskIdentifier bgTask;
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    });
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

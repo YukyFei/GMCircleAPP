@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "UMessage.h"
-
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -265,6 +265,11 @@
             [UMessage addAlias:user_id type:@"user_id" response:^(id responseObject, NSError *error) {
 
             }];
+            
+#pragma mark 登录成功后，开始蓝牙扫描
+            AppDelegate * delegate = [AppDelegate sharedInstance];
+            
+            [delegate bluetoothStartOpenDoor];
             
         }else{
             if ([[dicresult objectForKey:@"Status"] isEqualToString:@"error"]) {

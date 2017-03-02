@@ -231,7 +231,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 {
     if (self = [super init]) {
         
-        
         _locationMgr = [[CLLocationManager alloc] init];
         _locationMgr.delegate = self;
         [self enableLocaitonService];
@@ -241,43 +240,8 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     return self;
 }
 
-
-
-
-
 #pragma mark ibeacon定位相关方法
-/********************************ibeacon相关方法********************************************/
-/*
-- (CLBeaconRegion *)beaconRegionInitWithProximityString:(NSString *)proximityStr andMajorString:(NSString *)majorStr andMinorString:(NSString *)minorStr andIndentityString:(NSString *)identityStr
-{
-    
-    CLBeaconRegion * beaconRegion;
-    
-    self.beaconUUIDString = proximityStr;
-    self.majorString = majorStr;
-    self.minorString = minorStr;
-    
-    NSUUID * proximityUUID = [[NSUUID alloc] initWithUUIDString:proximityStr];
 
-    if (proximityStr && majorStr && minorStr) {
-        
-        beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID major:[majorStr integerValue] minor:[minorStr integerValue] identifier:identityStr];
-    }
-    else if (proximityStr && majorStr)
-    {
-        beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID major:[majorStr integerValue] identifier:identityStr];
-    }
-    else if (proximityStr)
-    {
-        beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:proximityUUID major:[majorStr integerValue] identifier:identityStr];
-    }
-
-    beaconRegion.notifyEntryStateOnDisplay = YES;
-    beaconRegion.notifyOnEntry = YES;
-    beaconRegion.notifyOnExit = YES;
-    return beaconRegion;
-}
-*/
 /*----激活定位服务----*/
 - (void)enableLocaitonService
 {
@@ -297,39 +261,13 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 {
     if ([CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]])
     {
-//        // 如果用户授权了监控
-//        if (self.isAccreditedBeaconRegion) {
-//            
-//            if (self.mBeaconRegions.count) {
-//                
-//                self.isMonitoringBeaconRegion = YES;
-//                for (CLBeaconRegion * region in self.mBeaconRegions) {
-//                    
-//                    [self startMonitorForRegion:region];
-//                }
-//            }
-//            else
-//            {
-//                self.isMonitoringBeaconRegion = NO;
-//                //NSLog(@"还没有定义要监控的beaconRegion");
-//            }
-        
-        
-//        }
-//        else
-//        {
-//            [SVProgressHUD showErrorWithStatus:@"没有授权监控ibeacon"];
-//        }
         [self startMonitorForRegion:nil];
-        
     }
     else
     {
         self.isMonitoringBeaconRegion = NO;
         //NSLog(@"版本不支持CLBeaconRegion监控");
     }
-    
-    
 }
 
 //定位服务开启后，开始监控
@@ -366,18 +304,25 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     }
 }
 
-// 停止监控ibeacon
+// 停止监控ibeacon 停止监控时，要考虑是否处于连接状态，如果是，先断开连接再停止监控beacon
 - (void)stopMonitorForRegion:(CLBeaconRegion *)region
 {
     if (self.isMonitoringBeaconRegion) {
         
         self.isMonitoringBeaconRegion = NO;
         
+        
+        
         for (CLBeaconRegion * region in self.mBeaconRegions) {
             
             [self.locationMgr stopMonitoringForRegion:region];
             [self.locationMgr stopRangingBeaconsInRegion:region];
         }
+        
+        if([self.babyBlueTooth.centralManager isScanning])
+            [self.babyBlueTooth.centralManager stopScan];
+        if([self.centralMgr isScanning])
+            [self.centralMgr stopScan];
        
     }
 }
@@ -408,81 +353,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     return NO;
 }
 
-/*
-// 收集信号强度用于判断信号强度是否符合要求，是-蓝牙扫描，否，继续收集
-- (void)canScanBluetoothWithBeacons:(NSArray *)beacons
-{
-    //NSLog(@"isNear = %hhd",self.isNear);
-    //NSLog(@"beacons = %@",beacons);
-    
-    if(self.isNear == 0 && [self.babyBlueTooth findConnectedPeripherals].count != 0)
-    {
-        //NSLog(@"isnear = 0,蓝牙有连接");
-        [self.babyBlueTooth cancelAllPeripheralsConnection];
-    }
-    NSMutableArray * array = [NSMutableArray array];
-    //过滤信号为0的beacon
-    for (CLBeacon * beacon in beacons) {
-        
-        if (beacon.rssi != 0) {
-            
-            if([self isMonitorBeaconWithBeacon:beacon]) //监测到的beacon是要对应的beaconRegion的标识
-            {
-                if (self.rssiArray.count == RSSI_Count) {
-                    
-                    [self.rssiArray removeObjectAtIndex:0];
-                }
-                [self.rssiArray addObject:[NSNumber numberWithInteger:beacon.rssi]];
-            }
-            
-            
-            if(beacon.rssi >= -50 && !self.isNear) //信号值够强，可以直接连接，不需要获取三次求平均值
-            {
-                [self scanBTWhenRssiOK];
-                
-                return;
-            }
-            else if(beacon.rssi < -70)
-            {
-                
-                self.isNear = NO;
-                if ([self.babyBlueTooth findConnectedPeripherals].count) {
-                    //NSLog(@"远离ibeacon，蓝牙自动断开");
-                    [self.babyBlueTooth cancelAllPeripheralsConnection];
-                }
-                return;
-            }
-            //[array addObject:beacon];
-            
-        }
-    }
-    
-    if (self.rssiArray.count == RSSI_Count) {
-        
-        float sum = 0;
-        
-        for (NSNumber * temp in self.rssiArray) {
-            
-            sum += [temp floatValue];
-        }
 
-        if (sum/RSSI_Count > -55.0 && !self.isNear) {
-            
-            //NSLog(@"条件满足，可以扫描蓝牙。。。");
-            [self scanBTWhenRssiOK];
-            
-        }
-        else if(sum/RSSI_Count < -60.0) //信号强度弱时，自动断开蓝牙连接
-        {
-            self.isNear = NO;
-            if ([self.babyBlueTooth findConnectedPeripherals].count) {
-                //NSLog(@"远离ibeacon，蓝牙自动断开");
-                [self.babyBlueTooth cancelAllPeripheralsConnection];
-            }
-        }
-    }
-}
-*/
 // 达到条件后，扫描蓝牙,并记录记录开始时间
 - (void)scanBTWhenRssiOK
 {
@@ -500,8 +371,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 //    }
     
 }
-
-
 
 #pragma mark -- locationManager代理方法
 
@@ -524,11 +393,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         [_locationMgr requestAlwaysAuthorization];
     }
 }
-
-/*
- You can monitor beacon regions in two ways. To receive notifications when a device enters or exits the vicinity of a beacon, use the startMonitoringForRegion: method of your location manager object. While a beacon is in range, you can also call the startRangingBeaconsInRegion: method to begin receiving notifications when the relative distance to the beacon changes.
- */
-
 
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
@@ -565,69 +429,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         default:
             break;
     }
-}
-
-#pragma mark -- 锁屏操作
-//程序在前台的时候锁屏，可以检测到，并进入这个方法
-//1. 程序在前台，这种比较简单。直接使用Darwin层的通知就可以了：
-static void screenLockStateChanged(CFNotificationCenterRef center,void* observer,CFStringRef name,const void* object,CFDictionaryRef userInfo){
-    
-    
-    NSString* lockstate = (__bridge NSString*)name;
-    
-    //NSLog(@"lockstate:%@",lockstate);
-    
-    //(__bridge  NSString*)NotificationLock]桥接：将CoreFoundation框架的字符串转换为Foundation框架的字符串
-    if ([lockstate isEqualToString:(__bridge  NSString*)NotificationLock]) {
-        
-        //NSLog(@"locked.锁屏");
-        
-        isScreenLocked = YES;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            while (1) {
-                if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground && isScreenLocked)
-                {
-                    // 扫描蓝牙设备
-                    
-                }
-                
-                
-            }
-        });
-        
-        
-    }else{
-        
-        //NSLog(@"屏幕状态改变了");
-        isScreenLocked = NO;
-    }
-    
-}
-
-//2. 第二种是程序退后台后，这时再锁屏就收不到上面的那个通知了，需要另外一种方式, 以循环的方式一直来检测是否是锁屏状态，会消耗性能并可能被苹果挂起；
-static bool setScreenStateCb()
-{
-    
-    uint64_t locked;
-    
-    __block int token = 0;
-    
-    notify_register_dispatch("com.apple.springboard.lockstate",&token,dispatch_get_main_queue(),^(int t){
-        
-        //NSLog(@"notify_register_dispatch");
-    });
-    
-    notify_get_state(token, &locked);
-    
-    //NSLog(@"锁屏状态：%d",(int)locked);
-    if (locked) {
-        
-        return YES;
-    }
-    else
-        return NO;
-    
 }
 
 //找到ibeacon后扫描它的信息
@@ -959,12 +760,12 @@ static bool setScreenStateCb()
                     [peripheral writeValue:openDoorData forCharacteristic:tempChar type:CBCharacteristicWriteWithoutResponse];
                     self.hasSendData = YES; //发送过数据后，置为YES，在重新扫描连接时，延时执行
                     
-                    
-                    if([self.delegate respondsToSelector:@selector(openDoorTool:didOpenDoorWithBabyBluetooth:)])
-                    {
-                        [self.delegate openDoorTool:self didOpenDoorWithBabyBluetooth:self.babyBlueTooth];
-                        
-                    }
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"bluetoothOpenDoorSuccess" object:nil];
+//                    if([self.delegate respondsToSelector:@selector(openDoorTool:didOpenDoorWithBabyBluetooth:)])
+//                    {
+//                        [self.delegate openDoorTool:self didOpenDoorWithBabyBluetooth:self.babyBlueTooth];
+//                        
+//                    }
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         
@@ -1266,70 +1067,6 @@ static bool setScreenStateCb()
     }
 }
 
-/*
-- (BT_STATE)isRssiOKWithRssi:(NSNumber *)RSSI
-{
-    //    BT_CAN_CONNECT, //可以连接
-    //    BT_DISCONNECT_CONNECT, //即将断开
-    //    BT_KEEP_STATE,
-    // 1. 收集信号值
-    if (self.rssiArray.count == RSSI_Count) {
-        
-        [self.rssiArray removeObjectAtIndex:0];
-    }
-    [self.rssiArray addObject:RSSI];
-    
-    NSLog(@"当前信号值:%@",RSSI);
-    NSLog(@"当前信号集合:%@",self.rssiArray);
-    if([RSSI floatValue] >= -50.0)      // 2. 信号值够强，可以直接连接，不需要获取三次求平均值
-    {
-        NSLog(@"beacon信号足够强，扫描指定蓝牙设备");
-        [self cancelScanBeaconAndStopRangeBeacon];
-        return BT_CAN_CONNECT;
-    }
-    else if([RSSI floatValue] < -90.0)  // 3. 信号值够强，可以直接连接，不需要获取三次求平均值
-    {
-        NSLog(@"beacon信号太弱，断开蓝牙设备连接");
-        return BT_DISCONNECT_CONNECT;
-    }
-    else                                // 4. 算平均值，确定连接还是断开
-    {
-        if (self.rssiArray.count == RSSI_Count) {
-            
-            float sum = 0;
-            
-            for (NSNumber * temp in self.rssiArray) {
-                
-                sum += [temp floatValue];
-            }
-            
-            if (sum/RSSI_Count > -60.0) {
-                
-                NSLog(@"beacon信号合格，扫描指定蓝牙设备");
-//                [self cancelScanBeaconAndStopRangeBeacon];
-                return BT_CAN_CONNECT;
-            }
-            else if(sum/RSSI_Count < -90.0)
-            {
-                NSLog(@"beacon信号远离，断开蓝牙设备连接");
-                return BT_DISCONNECT_CONNECT;
-            }
-            else
-            {
-                NSLog(@"beacon信号不达标");
-                return BT_KEEP_STATE;
-            }
-            
-        }
-        else
-        {
-            NSLog(@"信号收集还没有完成");
-            return BT_KEEP_STATE;
-        }
-    }
-}
-*/
-
 - (BT_STATE)isRssiOKWithRssi:(NSNumber *)RSSI andBeaconRssiArray:(NSMutableArray *)mBeaconRssiArray
 {
     //    BT_CAN_CONNECT, //可以连接
@@ -1410,13 +1147,13 @@ static bool setScreenStateCb()
     int a = cardNum; //卡号
     
     //NSLog(@"卡号：%02x",a);
-    //                Byte contentData[4] = {0}; //有效数据
-    //
-    //                Byte * tmp = (Byte *)&a;
-    //                contentData[0] = *tmp;
-    //                contentData[1] = *(tmp+1);
-    //                contentData[2] = *(tmp+2);
-    //                contentData[3] = *(tmp+3);
+    Byte contentData[4] = {0}; //有效数据
+    
+    Byte * tmp = (Byte *)&a;
+    contentData[3] = *tmp;
+    contentData[2] = *(tmp+1);
+    contentData[1] = *(tmp+2);
+    contentData[0] = *(tmp+3);
     
     Byte openData[9] = {0}; //整个包
     
@@ -1425,8 +1162,8 @@ static bool setScreenStateCb()
     Byte tailData[] = {0xfe,0x3a}; // 包尾
     
     memcpy(openData, headData, sizeof(headData));
-    memcpy(openData+sizeof(headData), &a, sizeof(a));
-    memcpy(openData+sizeof(headData)+sizeof(a), tailData, sizeof(tailData));
+    memcpy(openData+sizeof(headData), contentData, sizeof(contentData));
+    memcpy(openData+sizeof(headData)+sizeof(contentData), tailData, sizeof(tailData));
     
     //计算校验位
     Byte checkData = 0x00;

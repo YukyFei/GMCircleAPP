@@ -13,47 +13,7 @@
 #include <notify.h>
 #import "NearbyPeripheralInfo.h"
 #import "SVProgressHUD.h"
-
-#define NotificationLock CFSTR("com.apple.springboard.lockcomplete")
-
-#define NotificationChange CFSTR("com.apple.springboard.lockstate")
-
-#define NotificationPwdUI CFSTR("com.apple.springboard.hasBlankedScreen")
-
-
-
-// beacon相关宏
-#define BeaconUUID @"FDA50693-A4E2-4FB1-AFCF-C6EB07647825" //iBeacon的uuid可以换成自己设备的uuid
-//#define BeaconMacAddress1 @"00:cd:ff:00:35:34" // BR517301（广播出来的localName）  BRDA（出厂名字）
-
-//#define BeaconMacAddress1  @"00:cd:ff:0e:4e:ae" // BR517377
-//#define BeaconMacAddress2 @"00:cd:ff:00:35:94" // BR517302
-
-#define BeaconMacAddress1  @"00:cd:ff:0e:50:e8" // BR518062
-#define BeaconMacAddress2 @"00:cd:ff:00:50:e9" // BR518061
-
-#define BeaconMajor @"10"
-#define BeaconMinor_1 @"1"
-#define BeaconMinor_2 @"2"
-
-
-//百思通蓝牙
-#define SERVICE_UUID @"0000fee9-0000-1000-8000-00805f9b34fb"
-#define NOTIFY_UUID  @"d44bc439-abfd-45a2-b575-925416129601"
-#define WRITE_UUID   @"d44bc439-abfd-45a2-b575-925416129600"
-
-//#define BTMacAddress1 @"08:7C:BE:23:33:E4" // 老板子
-#define BTMacAddress1 @"08:7C:BE:23:34:A2" // 白盒子 蓝牙mac（以后从服务器接受，要和对应的beacon对应） --- 广播出来的是逆序的
-//#define BTMacAddress1 @"08:7C:BE:23:32:C9"
-
-//#define BTMacAddress1 @"08:7C:BE:23:35:FC" // 闸机内部
-//#define BTMacAddress2 @"08:7C:BE:23:34:A2"
-
-#define RSSI_Count 2
-#define RSSI_Standard (-80.0)
-
-
-
+#import "MacroDefinition.h"
 
 typedef enum : NSUInteger {
     BT_CAN_CONNECT, //可以连接
@@ -87,6 +47,10 @@ typedef enum : NSUInteger {
 - (void)openDoorTool:(OpenDoorTool *)openDoorTool didRangingBeaconFailed:(NSError *)error;
 
 @end
+
+
+
+
 
 @interface OpenDoorTool : NSObject <CLLocationManagerDelegate>
 

@@ -49,10 +49,16 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>cameraDesciption</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>一直使用定位服务</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>当用到的时候使用定位服务</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>photoLibraryDesciption</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
+		<string>bluetooth-central</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UIMainStoryboardFile</key>

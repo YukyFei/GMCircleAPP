@@ -43,6 +43,17 @@
 
 @implementation GMQOpenDoorController
 
+- (void)hideNaviback:(BOOL)bIsHide
+{
+    [super hideNaviback:bIsHide];
+}
+
+- (void)setNaviBarTitle:(NSString *)strTitle
+{
+    [super setNaviBarTitle:strTitle];
+}
+
+#pragma mark 开门相关
 - (NSMutableArray *)devicesArray
 {
     if (!_devicesArray) {
@@ -70,6 +81,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self hideNaviback:YES];
+    [self setNaviBarTitle:@"开门"];
     
     self.tool  = [OpenDoorTool shareOpenDoorTool];
     

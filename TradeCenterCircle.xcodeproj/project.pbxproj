@@ -351,6 +351,7 @@
 		0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMQOpenDoorController.xib; sourceTree = "<group>"; };
 		0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMQOpenDoorController.h; sourceTree = "<group>"; };
 		0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMQOpenDoorController.m; sourceTree = "<group>"; };
+		02B6E6A61E5AFEAB00531ABD /* MacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
 		330ADBC61D8FD69F0066A20E /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		330ADBC71D8FD69F0066A20E /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		333D485A1D6FE539004E1F84 /* MyExpressFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyExpressFeeModel.h; sourceTree = "<group>"; };
@@ -1004,6 +1005,7 @@
 		0256BB151E51AAC700476DC0 /* OpenDoorTool */ = {
 			isa = PBXGroup;
 			children = (
+				02B6E6A61E5AFEAB00531ABD /* MacroDefinition.h */,
 				0256BB161E51AAC700476DC0 /* OpenDoorTool.h */,
 				0256BB171E51AAC700476DC0 /* OpenDoorTool.m */,
 			);
@@ -1190,9 +1192,9 @@
 			isa = PBXGroup;
 			children = (
 				0256BB091E51AABA00476DC0 /* libBabyBluetooth.a */,
+				0256BB151E51AAC700476DC0 /* OpenDoorTool */,
 				0256BB0B1E51AAC700476DC0 /* Controllers */,
 				0256BB0E1E51AAC700476DC0 /* Models */,
-				0256BB151E51AAC700476DC0 /* OpenDoorTool */,
 				0256BB181E51AAC700476DC0 /* Views */,
 				3358E9951D7D51D100075D33 /* OpenDoorViewController.h */,
 				3358E9961D7D51D100075D33 /* OpenDoorViewController.m */,

@@ -17,6 +17,7 @@
 #import "MyCouponsViewController.h"
 #import "MyInformationViewController.h"
 #import "AddressManagerViewController.h"
+#import "AppDelegate.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UIScrollViewDelegate>
 
@@ -262,6 +263,11 @@
         [USER_DEFAULT synchronize];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:KNotificationSwitchUserLogin object:nil userInfo:nil];
+        
+        if (![[AppDelegate sharedInstance] bluetoothStopOpenDoor]) {
+            
+            NSLog(@"由于登录状态，未关闭监控");
+        }
     }
 }
 
