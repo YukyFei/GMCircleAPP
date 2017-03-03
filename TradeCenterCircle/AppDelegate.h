@@ -14,6 +14,8 @@
 
 @property(nonatomic,strong)OpenDoorTool * openDoorTool;
 
+@property(nonatomic,strong) NSMutableArray * phoneNum_cardNum; //模拟数据，手机号对应的卡号
+
 + (AppDelegate*)sharedInstance;
 - (UIViewController*)topMostViewContrller;
 

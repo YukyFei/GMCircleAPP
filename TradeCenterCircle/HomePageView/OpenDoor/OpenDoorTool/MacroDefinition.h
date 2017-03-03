@@ -64,7 +64,6 @@
 #define BeaconMacAddress4_2  @"00:cd:ff:0e:50:77" //BR518071
 #endif
 
-
 #define BeaconMajor   @"10"
 #define BeaconMinor_1 @"1"
 #define BeaconMinor_2 @"2"
@@ -93,6 +92,10 @@
 
 #define RSSI_Count 2
 #define RSSI_Standard (-80.0)
+
+#define NSDictionary(dict,phoneNum) [dict objectForKey:phoneNum]
+
+
 
 
 

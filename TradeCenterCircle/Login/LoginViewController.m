@@ -269,7 +269,20 @@
 #pragma mark 登录成功后，开始蓝牙扫描
             AppDelegate * delegate = [AppDelegate sharedInstance];
             
-            [delegate bluetoothStartOpenDoor];
+            for (NSDictionary *dict in delegate.phoneNum_cardNum) {
+                
+                if ([dict objectForKey:_userNameTf.text]) {
+                    
+                    delegate.openDoorTool.cardNum = [dict objectForKey:_userNameTf.text];
+                    break;
+                }
+            }
+           
+            BOOL isStartOpenDoor = [delegate bluetoothStartOpenDoor];
+            if (isStartOpenDoor) {
+                
+                NSLog(@"登录成功，开门操作开启");
+            }
             
         }else{
             if ([[dicresult objectForKey:@"Status"] isEqualToString:@"error"]) {

@@ -62,22 +62,12 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,strong)CLLocationManager * locationMgr; //定位服务管理
 
-//@property(nonatomic,strong)CLBeaconRegion * beaconRegion; //定义要监控的ibeaconRegion
-
-@property(nonatomic,strong) NSMutableArray <CLBeaconRegion *> * mBeaconRegions; // 注册多个beacon区域，与蓝牙建立对应关系，为后台连接指定蓝牙做区分
-
-//@property(nonatomic,copy)NSString * beaconUUIDString; // beaconUUidString
-//@property(nonatomic,copy)NSString * majorString; // major
-//@property(nonatomic,copy)NSString * minorString; // minor
-//@property(nonatomic,copy)NSString * identity; // identity
+// 注册多个beacon区域，与蓝牙建立对应关系，为后台连接指定蓝牙做区分
+@property(nonatomic,strong) NSMutableArray <CLBeaconRegion *> * mBeaconRegions;
 
 @property(nonatomic,strong)NSMutableArray * beaconArr; //扫描到的ibeacon
 
-@property(nonatomic,strong)NSMutableArray * scanBeaconArray; //要监控的ibeacon
-
 @property(nonatomic,strong)NSMutableArray * scanedBeaconArray; //监控到的ibeacon
-
-@property(nonatomic,assign)CLRegionState regionState; // region
 
 @property(nonatomic,assign)BOOL isMonitoringBeaconRegion; // 是否正在监控beaconRegion
 
@@ -85,11 +75,7 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,strong) CBCentralManager * centralMgr; // 用于扫描ibeacon的Manager
 
-@property(nonatomic,assign)BOOL isNear; // 靠近了，开始扫描后，如果还是靠近就不再开启扫描服务
-
-/*----设置要监控的ibeacon----*/
-//注意：不能以init开头命名方法名
-- (CLBeaconRegion *)beaconRegionInitWithProximityString:(NSString *)proximityStr andMajorString:(NSString *)majorStr andMinorString:(NSString *)minorStr andIndentityString:(NSString *)identityStr;
+@property(nonatomic,assign)BOOL isNear; // 靠近标志位，开始扫描后，如果还是靠近就不再开启扫描服务
 
 
 //开始监控ibeacon
@@ -100,16 +86,18 @@ typedef enum : NSUInteger {
 
 //蓝牙相关属性
 
-@property(nonatomic,assign) BOOL isConnected; //连接成功标志位，监控此属性，一旦连接成功，立刻断开，测试断开连接慢问题
+//连接成功标志位，监控此属性，一旦连接成功，立刻断开，测试断开连接慢问题（目前此属性没有使用）
+@property(nonatomic,assign) BOOL isConnected;
 
-@property(nonatomic,strong)BabyBluetooth * babyBlueTooth; //蓝牙第三方实例化对象
+@property(nonatomic,strong) BabyBluetooth *  babyBlueTooth; //蓝牙第三方实例化对象
 
-@property(nonatomic,strong)NSMutableArray * peripherals; //扫描到的目的外设总和
+@property(nonatomic,strong) NSMutableArray * peripherals; //扫描到的目的外设总和
 
-@property(nonatomic,strong)CBPeripheral * peripheral; //连接成功的外设
+@property(nonatomic,strong) CBPeripheral *   peripheral; //连接成功的外设
 
-@property(nonatomic,strong) NSMutableArray * devicesArray; //扫描到的所有蓝牙设备
-@property(nonatomic,strong) NSMutableArray * devicesRSSIArray; //与扫描到的所有蓝牙设备对应的信号值
+//@property(nonatomic,strong) NSMutableArray * devicesArray; //扫描到的所有蓝牙设备
+//@property(nonatomic,strong) NSMutableArray * devicesRSSIArray; //与扫描到的所有蓝牙设备对应的信号值
+
 /*
     CBCentralManagerScanOptionAllowDuplicatesKey
     CBCentralManagerScanOptionSolicitedServiceUUIDsKey
@@ -151,7 +139,10 @@ typedef enum : NSUInteger {
 
 + (OpenDoorTool *)shareOpenDoorTool;
 
-
+/**
+ *  每次前后台切换和登录状态切换时，涉及到蓝牙的初始化，防止由于之前的操作对之后的逻辑状态有影响
+ */
+- (void)bluetoothCentralManagerInit;
 
 
 

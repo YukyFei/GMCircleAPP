@@ -264,10 +264,13 @@
         
         [[NSNotificationCenter defaultCenter]postNotificationName:KNotificationSwitchUserLogin object:nil userInfo:nil];
         
-        if (![[AppDelegate sharedInstance] bluetoothStopOpenDoor]) {
+        if ([[AppDelegate sharedInstance] bluetoothStopOpenDoor]) {
             
-            NSLog(@"由于登录状态，未关闭监控");
+            NSLog(@"关闭监控成功");
+        } else {
+            NSLog(@"关闭监控失败");
         }
+        
     }
 }
 

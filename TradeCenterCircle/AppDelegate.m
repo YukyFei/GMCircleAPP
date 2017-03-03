@@ -36,9 +36,23 @@
 @property(nonatomic,strong) NSDictionary * pushDic ;
 
 
+
 @end
 
 @implementation AppDelegate
+
+- (NSMutableArray *)phoneNum_cardNum
+{
+    if (!_phoneNum_cardNum) {
+        
+        _phoneNum_cardNum = [NSMutableArray array];
+        
+        [_phoneNum_cardNum addObject:@{@"18511636347":@"0x11223344"}];
+
+    }
+    return _phoneNum_cardNum;
+}
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -116,60 +130,7 @@
                                              selector:@selector(switchUserLogin)
                                                  name:KNotificationSwitchUserLogin object:nil];
 }
-#pragma mark 蓝牙设置
-- (void)bluetoothInit {
 
-    _openDoorTool = [OpenDoorTool shareOpenDoorTool];
-    //    openDoorTool.delegate = self;
-    
-    _openDoorTool.scanOptions = @{
-                                  CBCentralManagerScanOptionAllowDuplicatesKey:@YES
-                                  };
-    _openDoorTool.connectOptions = @{
-                                     CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES
-                                     };
-    
-    
-    _openDoorTool.serviceStr = [SERVICE_UUID uppercaseString];
-    _openDoorTool.readCharacterisicStr = [NOTIFY_UUID uppercaseString];
-    _openDoorTool.writeCharacterisicStr = [WRITE_UUID uppercaseString];
-    
-}
-
-// 开始扫描
-- (BOOL)bluetoothStartOpenDoor
-{
-    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
-    if (loginStatus) {
-        
-        if (self.openDoorTool.mBeaconRegions.count) {
-            
-            self.openDoorTool.isAccreditedBeaconRegion = YES; //授权可以监控ibeacon
-            [self.openDoorTool beginMonitorBeacon];
-            return YES;
-        }
-        
-    }
-    return NO;
-}
-
-// beacon结束监控
-- (BOOL)bluetoothStopOpenDoor
-{
-    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
-    if (loginStatus) {
-        return NO;
-    }
-    [self.openDoorTool stopMonitorForRegion:nil];
-    return YES;
-}
-
-- (void)bluetoothOpenDoorSuccess
-{
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-}
 
 /**
  *  根据登录状态，跳转不同界面
@@ -754,19 +715,77 @@
 }
 
 #pragma mark ---  蓝牙后台运行设置
+
+#pragma mark 蓝牙设置
+- (void)bluetoothInit {
+    
+    _openDoorTool = [OpenDoorTool shareOpenDoorTool];
+    //    openDoorTool.delegate = self;
+    
+    _openDoorTool.scanOptions = @{
+                                  CBCentralManagerScanOptionAllowDuplicatesKey:@YES
+                                  };
+    _openDoorTool.connectOptions = @{
+                                     CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES
+                                     };
+    
+    
+    _openDoorTool.serviceStr = [SERVICE_UUID uppercaseString];
+    _openDoorTool.readCharacterisicStr = [NOTIFY_UUID uppercaseString];
+    _openDoorTool.writeCharacterisicStr = [WRITE_UUID uppercaseString];
+    
+}
+
+// 开始扫描
+- (BOOL)bluetoothStartOpenDoor
+{
+    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
+    if (loginStatus) {
+        
+        if (self.openDoorTool.mBeaconRegions.count) {
+            
+            self.openDoorTool.isAccreditedBeaconRegion = YES; //授权可以监控ibeacon
+            [self.openDoorTool beginMonitorBeacon];
+            return YES;
+        }
+        
+    }
+    return NO;
+}
+
+// beacon结束监控
+- (BOOL)bluetoothStopOpenDoor
+{
+    BOOL loginStatus=[USER_DEFAULT boolForKey:kLoginSuccess];
+    if (loginStatus) {
+        return NO;
+    }
+    [self.openDoorTool stopMonitorForRegion:nil];
+    return YES;
+}
+
+// 蓝牙发送数据后，手机震动
+- (void)bluetoothOpenDoorSuccess
+{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+}
+
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 
     NSLog(@"后台");
     
-    if ([_openDoorTool.babyBlueTooth.centralManager isScanning]) {
-        
-        [_openDoorTool.babyBlueTooth cancelScan];
-    }
-    if([_openDoorTool.babyBlueTooth findConnectedPeripherals].count)
-    {
-        [_openDoorTool.babyBlueTooth cancelAllPeripheralsConnection];
-    }
+    [_openDoorTool bluetoothCentralManagerInit];
     
+    if([self bluetoothStartOpenDoor])
+    {
+        NSLog(@"成功开启开门操作");
+    }
+    else
+    {
+        NSLog(@"未登录状态");
+    }
     
     UIApplication*   app = [UIApplication sharedApplication];
     __block    UIBackgroundTaskIdentifier bgTask;
@@ -806,6 +825,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     //进程杀死调用该方法
+    
+    // 应用被杀死的时候，断开所有连接
+    if([self.openDoorTool.babyBlueTooth findConnectedPeripherals].count)
+       [self.openDoorTool.babyBlueTooth cancelAllPeripheralsConnection];
 }
 
 @end
