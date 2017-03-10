@@ -195,6 +195,7 @@
         }
     } errorBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.tableView.legendHeader endRefreshing];
+
     }];
 }
 

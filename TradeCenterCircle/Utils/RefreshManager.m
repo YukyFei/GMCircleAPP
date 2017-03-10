@@ -7,7 +7,7 @@
 //
 
 #import "RefreshManager.h"
-
+#import "AppDelegate.h"
 static RefreshManager *manager = nil;
 
 @implementation RefreshManager
@@ -93,8 +93,9 @@ static RefreshManager *manager = nil;
 {
     NSLog(@"userlogin===%@=======token======%@",[USER_DEFAULT objectForKey:kUserId],[USER_DEFAULT objectForKey:kLoginToken]);
     NSLog(@"%@",[NSString stringWithFormat:@"%@user_id=%@&token=%@&app_name=gmq&community_id=%@",RefreshTokenISLOPGINURL,[USER_DEFAULT objectForKey:kUserId],[USER_DEFAULT objectForKey:kLoginToken],[USER_DEFAULT objectForKey:kCommunityId]]) ;
+    NSString * urlStr = [NSString stringWithFormat:@"%@user_id=%@&token=%@&app_name=gmq&community_id=%@",RefreshTokenISLOPGINURL,[USER_DEFAULT objectForKey:kUserId],[USER_DEFAULT objectForKey:kLoginToken],[USER_DEFAULT objectForKey:kCommunityId]];
     
-    [HttpService getWithUrl:[NSString stringWithFormat:@"%@user_id=%@&token=%@&app_name=gmq&community_id=%@",RefreshTokenISLOPGINURL,[USER_DEFAULT objectForKey:kUserId],[USER_DEFAULT objectForKey:kLoginToken],[USER_DEFAULT objectForKey:kCommunityId]] success:^(AFHTTPRequestOperation *operation, id jsonObj) {
+    [HttpService getWithUrl:urlStr success:^(AFHTTPRequestOperation *operation, id jsonObj) {
         NSDictionary *dict = (NSDictionary *)jsonObj;
 
         if ([dict[@"code"] integerValue]==400) {
@@ -112,6 +113,10 @@ static RefreshManager *manager = nil;
 /*网页加载异常弹出提示框*/
 -(void)popAlertView
 {
+    // 在session失效，需要重新登录前，关闭扫描
+    AppDelegate * delegate = [AppDelegate sharedInstance];
+    [delegate.openDoorTool stopMonitorForRegion:nil];
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"数据加载有误，请重新登录" message:@"亲，登录成功后才能浏览页面哦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     [alertView show];
 }

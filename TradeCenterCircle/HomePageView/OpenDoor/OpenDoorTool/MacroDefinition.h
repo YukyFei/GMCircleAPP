@@ -17,7 +17,7 @@
 
 #define NotificationPwdUI CFSTR("com.apple.springboard.hasBlankedScreen")
 
-#define DEBUG
+#define OpenDoor_Debug
 
 /*
  beacon2deviceRelations.put("00:CD:FF:00:35:34", "08:7C:BE:23:34:07");
@@ -29,16 +29,23 @@
 //#define BeaconMacAddress1 @"00:cd:ff:00:35:34" // BR517301（广播出来的localName）  BRDA（出厂名字）
 
 //#define BeaconMacAddress1  @"00:cd:ff:0e:4e:ae" // BR517377
-//#define BeaconMacAddress2 @"00:cd:ff:00:35:94" // BR517302
+//#define BeaconMacAddress2  @"00:cd:ff:00:35:94" // BR517302
 
-#ifdef DEBUG //测试
+#ifdef OpenDoor_Debug //测试
 
-#define BeaconMacAddress1  @"00:cd:ff:0e:50:e8" // BR518062
-#define BeaconMacAddress2  @"00:cd:ff:00:50:e9" // BR518061
-#define BTMacAddress1      @"08:7C:BE:23:34:A2" // 白盒子
+#define BeaconMacAddressTest1_1  @"00:cd:ff:0e:50:f2" // BR518064
+#define BeaconMacAddressTest1_2  @"00:cd:ff:00:50:f1" // BR518065
+#define BTMacAddressTest1        @"08:7C:BE:23:34:A2" // 白盒子
 
+#define BeaconMinorTest @"7"
+//#define BTMacAddressTest1      @"08:7C:BE:23:33:77" // 测试模块
 #else   //现场
         // 0220闸机测试使用
+
+#define BeaconMacAddressTest1_1  @"00:cd:ff:0e:50:e8" // BR518062 10 7
+#define BeaconMacAddressTest1_2  @"00:cd:ff:00:50:e9" // BR518061 10 1
+#define BTMacAddressTest1        @"08:7C:BE:23:33:77" // 测试模块
+
 #define BTMacAddress1      @"08:7C:BE:23:34:C3" //1号板
 #define BTMacAddress2      @"08:7C:BE:23:34:07" //2号板
 #define BTMacAddress3      @"08:7C:BE:23:34:03" //3号板
@@ -91,9 +98,11 @@
 //#define BTMacAddress2 @"08:7C:BE:23:34:A2"
 
 #define RSSI_Count 2
-#define RSSI_Standard (-80.0)
+#define RSSI_Standard_Fore (-43.0)
+#define RSSI_Strong_Fore   (-38.0)
+#define RSSI_Standard_Back (-45.0)
+#define RSSI_Strong_Back   (-40.0)
 
-#define NSDictionary(dict,phoneNum) [dict objectForKey:phoneNum]
 
 
 

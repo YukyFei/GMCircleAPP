@@ -10,8 +10,9 @@
 #import "GMQNavigationController.h"
 #import "HomeViewController.h"
 #import "ShopCartViewController.h"
-//#import "OpenDoorViewController.h"
+#import "OpenDoorViewController.h"
 #import "GMQOpenDoorController.h"
+#import "OpenDoorController.h"
 
 #import "MineViewController.h"
 #import "MyShopCartViewController.h"
@@ -39,8 +40,12 @@
 //    OpenDoorViewController *opendoorView = [[OpenDoorViewController alloc] init];
 //    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
 
-    GMQOpenDoorController *opendoorView = [[GMQOpenDoorController alloc] init];
-    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
+//    GMQOpenDoorController *opendoorView = [[GMQOpenDoorController alloc] init];
+//    GMQNavigationController *navopendoor = [[GMQNavigationController alloc] initWithRootViewController:opendoorView];
+    
+    OpenDoorController * openDoorVC = [[OpenDoorController alloc] init];
+    GMQNavigationController * navOpenDoor = [[GMQNavigationController alloc] initWithRootViewController:openDoorVC];
+    
     
     //购物车
     MyShopCartViewController *shopView = [[MyShopCartViewController alloc] init];
@@ -51,7 +56,7 @@
     //我的
     MineViewController *mineView = [[MineViewController alloc] init];
     GMQNavigationController *navMine  = [[GMQNavigationController alloc] initWithRootViewController:mineView];
-    self.viewControllers = @[navHome,navopendoor,navShopCart,navMine];
+    self.viewControllers = @[navHome,navOpenDoor,navShopCart,navMine];
 }
 
 - (void)viewWillLayoutSubviews{

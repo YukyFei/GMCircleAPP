@@ -17,7 +17,7 @@
 //  @[@{mac1:array1},@{mac2:array2},@{mac3:array3}]
 @property(nonatomic,strong) NSMutableArray * BTMac_RSSIs;     //每个蓝牙模块对应的靠近信号值集合
 
-@property(nonatomic,strong) NSDictionary   * beaconMac_BTMac; // 从服务器拿到的beacon对应的蓝牙
+@property(nonatomic,strong) NSMutableDictionary * beaconMac_BTMac; // 从服务器拿到的beacon对应的蓝牙
 
 @property(nonatomic,strong) NSMutableArray * beaconMacs;      // 所有的beacon地址，beaconMac_BTMac字典取出所有的值
 
@@ -26,7 +26,7 @@
 @property(nonatomic,strong) NSString       * currentBTMac;    // 当前可以连接的蓝牙MAC
 
 
-@property(nonatomic,strong) NSDictionary * minor_BTMac;       // beaconRegion的Minor对应的Mac
+@property(nonatomic,strong) NSMutableDictionary * minor_BTMac;       // beaconRegion的Minor对应的Mac
 @property(nonatomic,strong) NSMutableArray * mMinors;
 
 @end
@@ -59,11 +59,42 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     return _BTMac_RSSIs;
 }
 
-- (NSDictionary *)beaconMac_BTMac
+- (NSMutableDictionary *)beaconMac_BTMac
 {
     if (!_beaconMac_BTMac) {
         
-        _beaconMac_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMacAddress1,BTMacAddress1, BeaconMacAddress2,nil];
+//        _beaconMac_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMacAddress1,BTMacAddress1, BeaconMacAddress2,nil];
+        
+        _beaconMac_BTMac = [NSMutableDictionary dictionary];
+
+#ifdef OpenDoor_Debug
+        
+        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_1];
+        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_2];
+        
+#else
+        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_1];
+        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_2];
+        
+        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_1];
+        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_2];
+        
+        [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress4_1];
+        [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress4_2];
+#endif
+        
+        
+        
+        
+//        [_beaconMac_BTMac setObject:BTMacAddress2 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress2 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress5 forKey:BeaconMacAddress1];
+//        [_beaconMac_BTMac setObject:BTMacAddress5 forKey:BeaconMacAddress1];
+        
     }
     return _beaconMac_BTMac;
 }
@@ -98,11 +129,23 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 
 #pragma mark BeaconRegion和蓝牙的对应关系
 
-- (NSDictionary *)minor_BTMac
+- (NSMutableDictionary *)minor_BTMac
 {
     if (!_minor_BTMac) {
         
-        _minor_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMinor_1,BTMacAddress1, BeaconMinor_2,nil];
+//        _minor_BTMac = [NSDictionary dictionaryWithObjectsAndKeys:BTMacAddress1,BeaconMinor_1,BTMacAddress1, BeaconMinor_2,nil];
+        
+        _minor_BTMac = [NSMutableDictionary dictionary];
+#ifdef OpenDoor_Debug
+        [_minor_BTMac setValue:BTMacAddressTest1 forKey:BeaconMinorTest];
+#else
+        [_minor_BTMac setValue:BTMacAddress1 forKey:BeaconMinor_1];
+        [_minor_BTMac setValue:BTMacAddress2 forKey:BeaconMinor_2];
+#endif
+        
+        
+        
+        
     }
     return _minor_BTMac;
 }
@@ -303,15 +346,15 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         
         self.isMonitoringBeaconRegion = NO;
         
-        // 断开所有连接的蓝牙设备
-        if(self.babyBlueTooth.findConnectedPeripherals.count)
-           [self.babyBlueTooth cancelAllPeripheralsConnection];
-        // 停止蓝牙设备扫描
-        if([self.babyBlueTooth.centralManager isScanning])
-            [self.babyBlueTooth.centralManager stopScan];
         // 停止ibeacon扫描（处于前台模式时，ibeacon信号值是通过蓝牙扫描拿到的）
         if([self.centralMgr isScanning])
             [self.centralMgr stopScan];
+        // 停止蓝牙设备扫描
+        if([self.babyBlueTooth.centralManager isScanning])
+            [self.babyBlueTooth.centralManager stopScan];
+        // 断开所有连接的蓝牙设备
+        if(self.babyBlueTooth.findConnectedPeripherals.count)
+            [self.babyBlueTooth cancelAllPeripheralsConnection];
        
     }
 }
@@ -415,40 +458,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     // 后台情况,通过babybluetooth扫描到的ibeacon信号作为参考值
     if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground)
     {
-
-//        {
-//            NSLog(@"监控到的区域:%@",region);
-//            
-//            NSArray * btMacs = [self.minor_BTMac allValues];
-//            
-//            NSLog(@"btMacs = %@",btMacs);
-//            for (CLBeacon * beacon in beacons) {
-//                
-//                NSLog(@"beacon.minor = %@",beacon.minor);
-//                if (beacon.rssi >= -18) {
-//                    
-//                    continue;
-//                }
-//                NSString * btMacStr = [btMacs objectAtIndex:[beacon.minor integerValue]-1]; // 从蓝牙地址数组中取出beacon.minor对应的蓝牙mac
-//                
-//                for (NSDictionary * dict in self.BTMac_RSSIs) {
-//                    
-//                    if([dict objectForKey:btMacStr])
-//                    {
-//                        BT_STATE state = [self isRssiOKWithRssi:[NSNumber numberWithInteger:beacon.rssi] andBeaconRssiArray:[dict objectForKey:btMacStr]];
-//                        if(state == BT_CAN_CONNECT)
-//                        {
-//                            self.currentBTMac = btMacStr;
-//                            [self scanBTWhenRssiOK]; //信号合格，扫描蓝牙
-//                            break;
-//                        }
-//                    }
-//                }
-//                
-//                
-//            }
-//        }
- 
         if(![self.babyBlueTooth.centralManager isScanning] && [self.babyBlueTooth findConnectedPeripherals].count == 0)
         {
             [self setBTOptions];
@@ -475,6 +484,40 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     }
 }
 
+- (void)test{
+    {
+//        NSLog(@"监控到的区域:%@",region);
+//        
+//        NSArray * btMacs = [self.minor_BTMac allValues];
+//        
+//        NSLog(@"btMacs = %@",btMacs);
+//        for (CLBeacon * beacon in beacons) {
+//            
+//            NSLog(@"beacon.minor = %@",beacon.minor);
+//            if (beacon.rssi >= -18) {
+//                
+//                continue;
+//            }
+//            NSString * btMacStr = [btMacs objectAtIndex:[beacon.minor integerValue]-1]; // 从蓝牙地址数组中取出beacon.minor对应的蓝牙mac
+//            
+//            for (NSDictionary * dict in self.BTMac_RSSIs) {
+//                
+//                if([dict objectForKey:btMacStr])
+//                {
+//                    BT_STATE state = [self isRssiOKWithRssi:[NSNumber numberWithInteger:beacon.rssi] andBeaconRssiArray:[dict objectForKey:btMacStr]];
+//                    if(state == BT_CAN_CONNECT)
+//                    {
+//                        self.currentBTMac = btMacStr;
+//                        [self scanBTWhenRssiOK]; //信号合格，扫描蓝牙
+//                        break;
+//                    }
+//                }
+//            }
+//            
+//            
+//        }
+    }
+}
 
 //发现进入ibeacon的回调
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
@@ -527,7 +570,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 
 
 
-/*-----------------------------------分割线-------------------------------------------*/
+/* 分割线-------------------------------------------*/
 
 #pragma mark Babybluetooth代理方法
 //蓝牙所有代理方法合集
@@ -549,7 +592,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
             NSLog(@"蓝牙打开成功，开始扫描设备");
         } else {
             
-            [SVProgressHUD dismissWithError:@"请打开蓝牙"];
+            [SVProgressHUD dismissWithError:@"请打开蓝牙" afterDelay:1.0];
         }
         
     }];
@@ -560,12 +603,13 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         
         if(RSSI.integerValue >= -18) return;
         
+         NSString * btMacStr = [self getBTMacFromAdvertisementData:advertisementData];
         // 后台直接通过拿蓝牙设备的信号值作为是否连接的判断依据
         if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground)
         {
             NSLog(@"name = %@ , advertisementData = %@",peripheral.name,advertisementData);
             
-            NSString * btMacStr = [self getBTMacFromAdvertisementData:advertisementData];
+           
             
             // 扫描到的蓝牙设备是闸机内的蓝牙
             if ([self.BTMacs containsObject:btMacStr]) {
@@ -590,35 +634,18 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         }
         else
         {
-//            [self updateBTDeviceInfoWithPeripheral:peripheral andRssi:RSSI]; //更新扫描到的蓝牙设备信息，目前貌似没有用
             
-            NSString * givenBTMac = nil;
-            
-            if(self.BTMac_Address)
-                givenBTMac = self.BTMac_Address;
-            else
-                givenBTMac = BTMacAddress1;
-            
-            if([self isScanedBTMacOKWith:advertisementData andGivenBTMac:givenBTMac]) {
-                
-                
-                
-                
-                /*            if (RSSI.integerValue > -50) {
-                 weakSelf.babyBlueTooth.having(peripheral).and.then.connectToPeripherals().discoverServices().discoverCharacteristics().begin();
-                 }
-                 */
+            if([self.currentBTMac isEqualToString:btMacStr])
+            {
                 self.isNear = YES;
                 if((![weakSelf.peripherals containsObject:peripheral]) && peripheral.services.count!=0)
                 {
                     
                     [weakSelf.peripherals addObject:peripheral];
                 }
-                
             }
+
         }
-        
-        
     }];
     
     [babyBT setFilterOnDiscoverPeripherals:^BOOL(NSString *peripheralName, NSDictionary *advertisementData, NSNumber *RSSI) {
@@ -732,12 +759,13 @@ static BOOL isScreenLocked; //屏幕是否锁屏
                         {
                             NSString *str = self.cardNum;
                             //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
-                            unsigned long cardNum = strtoul([str UTF8String],0,16);
+                            unsigned long cardNumber = strtoul([str UTF8String],0,16);
                             //strtoul如果传入的字符开头是“0x”,那么第三个参数是0，也是会转为十六进制的,这样写也可以：
 //                            unsigned long red2 = strtoul([str UTF8String],0,0);
-                            NSLog(@"转换完的数字为：%lx",cardNum);
+                            NSLog(@"转换完的数字为：%lx",cardNumber);
                             
-                            openDoorData = [self setPackageWithCardNum:cardNum];
+                            int testNum = (int)cardNumber;
+                            openDoorData = [self setPackageWithCardNum:testNum];
                         }
                         else
                         {
@@ -1069,13 +1097,13 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     NSLog(@"当前信号值:%@",RSSI);
     NSLog(@"当前信号集合:%@",mBeaconRssiArray);
     
-    int standardRssi = -45;
-    int strongRssi = -40;
+    int standardRssi = RSSI_Standard_Fore;
+    int strongRssi = RSSI_Strong_Fore;
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         
-        standardRssi = -60;
-        strongRssi = -50;
+        standardRssi = RSSI_Standard_Back;
+        strongRssi = RSSI_Strong_Back;
     }
     
     

@@ -219,7 +219,11 @@
         successBlock(operation,responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-           errorBlock(operation, error);
+        
+        if (error.code == -1001) {
+            [SVMessageHUD dismissWithError:@"请求超时" afterDelay:1.0];
+        }
+        errorBlock(operation, error);
     }];
 }
 

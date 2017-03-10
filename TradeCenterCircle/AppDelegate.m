@@ -47,7 +47,7 @@
         
         _phoneNum_cardNum = [NSMutableArray array];
         
-        [_phoneNum_cardNum addObject:@{@"18511636347":@"0x11223344"}];
+        [_phoneNum_cardNum addObject:@{@"18511636347":@"100"}];
 
     }
     return _phoneNum_cardNum;
@@ -774,8 +774,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 
-    NSLog(@"后台");
-    
+    NSLog(@"进入后台");
     [_openDoorTool bluetoothCentralManagerInit];
     
     if([self bluetoothStartOpenDoor])
@@ -813,6 +812,19 @@
     [self pushAction:self.pushDic application:application] ;
     //判断token是否失效
     [[RefreshManager manager] isRefreshToken];
+    
+    NSLog(@"进入前台");
+    
+    [_openDoorTool bluetoothCentralManagerInit];
+    if([self bluetoothStartOpenDoor])
+    {
+        NSLog(@"成功开启开门操作");
+    }
+    else
+    {
+        NSLog(@"未登录状态");
+    }
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
