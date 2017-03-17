@@ -273,11 +273,22 @@
                 
                 if ([dict objectForKey:_userNameTf.text]) {
                     
-                    delegate.openDoorTool.cardNum = [dict objectForKey:_userNameTf.text];
+//                    delegate.openDoorTool.cardNum = [dict objectForKey:_userNameTf.text];
+                    NSString * cardNum = [dict objectForKey:_userNameTf.text];
+                    
+                    [USER_DEFAULT setObject:cardNum forKey:@"User_CardNum"];
+                    [USER_DEFAULT synchronize];
+                    
                     break;
                 }
             }
-           
+            if([USER_DEFAULT objectForKey:@"User_CardNum"] == nil)
+            {
+                [SVProgressHUD dismissWithError:@"没有找到当前用户的卡号，设置默认测试账号111111" afterDelay:3.0];
+                [USER_DEFAULT setObject:@"111111" forKey:@"User_CardNum"];
+                [USER_DEFAULT synchronize];
+            }
+            
             BOOL isStartOpenDoor = [delegate bluetoothStartOpenDoor];
             if (isStartOpenDoor) {
                 

@@ -41,14 +41,47 @@
 
 @implementation AppDelegate
 
+/*
+ 
+ 13651062984=0000123456
+ 13601188574=0000123457
+ 13701389799=0000123458
+ 18911987658=0000123459
+ 15811265061=0000123460
+ 18911987510=0000123461
+ 13717917814=0000123462
+ 13910801440=0000123463
+ 13911719607=0000123464
+ 13910215761=0000123465
+ 13911718056=0000123466
+ 15011508521=0000123467
+ #323753
+ 13693008026=0000123468
+ #613728
+ 18511636347=0000123469
+ */
 - (NSMutableArray *)phoneNum_cardNum
 {
     if (!_phoneNum_cardNum) {
         
         _phoneNum_cardNum = [NSMutableArray array];
         
-        [_phoneNum_cardNum addObject:@{@"18511636347":@"100"}];
-
+        [_phoneNum_cardNum addObject:@{@"13651062984":@"123456"}];
+        [_phoneNum_cardNum addObject:@{@"13601188574":@"123457"}];
+        [_phoneNum_cardNum addObject:@{@"13701389799":@"123458"}];
+        [_phoneNum_cardNum addObject:@{@"18911987658":@"123459"}];
+        [_phoneNum_cardNum addObject:@{@"15811265061":@"123460"}];
+        [_phoneNum_cardNum addObject:@{@"18911987510":@"123461"}];
+        [_phoneNum_cardNum addObject:@{@"13717917814":@"123462"}];
+        [_phoneNum_cardNum addObject:@{@"13910801440":@"123463"}];
+        [_phoneNum_cardNum addObject:@{@"13911719607":@"123464"}];
+        [_phoneNum_cardNum addObject:@{@"13910215761":@"123465"}];
+        [_phoneNum_cardNum addObject:@{@"13911718056":@"123466"}];
+        [_phoneNum_cardNum addObject:@{@"15011508521":@"123467"}];
+        [_phoneNum_cardNum addObject:@{@"13693008026":@"123468"}];
+        [_phoneNum_cardNum addObject:@{@"18511636347":@"123469"}];
+        [_phoneNum_cardNum addObject:@{@"13910269588":@"123470"}];
+        [_phoneNum_cardNum addObject:@{@"18511917728":@"123471"}];
     }
     return _phoneNum_cardNum;
 }
@@ -57,6 +90,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [NSThread sleepForTimeInterval:3];//设置启动页面时间
+    
+    NSLog(@"%d",[@"0000123469" intValue]);
     
      [self loadVersion];
     /***友盟推送相关**/
@@ -720,21 +755,6 @@
 - (void)bluetoothInit {
     
     _openDoorTool = [OpenDoorTool shareOpenDoorTool];
-    //    openDoorTool.delegate = self;
-    
-    _openDoorTool.scanOptions = @{
-                                  CBCentralManagerScanOptionAllowDuplicatesKey:@YES
-                                  };
-    _openDoorTool.connectOptions = @{
-                                     CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
-                                     CBConnectPeripheralOptionNotifyOnNotificationKey:@YES
-                                     };
-    
-    
-    _openDoorTool.serviceStr = [SERVICE_UUID uppercaseString];
-    _openDoorTool.readCharacterisicStr = [NOTIFY_UUID uppercaseString];
-    _openDoorTool.writeCharacterisicStr = [WRITE_UUID uppercaseString];
     
 }
 
@@ -814,6 +834,21 @@
     [[RefreshManager manager] isRefreshToken];
     
     NSLog(@"进入前台");
+    
+//    //1. 判断定位服务是否可用
+//    if(![CLLocationManager locationServicesEnabled])
+//    {
+//        NSLog(@"定位服务未开启");
+//    }
+//    if (!([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+//        
+//        NSLog(@"持续定位服务未开启");
+//        [self.openDoorTool.locationMgr requestWhenInUseAuthorization];
+//        
+//    }
+
+    //2. 判断蓝牙服务是否可用
+    
     
     [_openDoorTool bluetoothCentralManagerInit];
     if([self bluetoothStartOpenDoor])

@@ -260,6 +260,7 @@
         //确定
         [USER_DEFAULT setBool:NO forKey:kLoginSuccess];
         [USER_DEFAULT removeObjectForKey:kGetIntoVC];
+        [USER_DEFAULT setObject:nil forKey:@"User_CardNum"];
         [USER_DEFAULT synchronize];
         
         [[NSNotificationCenter defaultCenter]postNotificationName:KNotificationSwitchUserLogin object:nil userInfo:nil];

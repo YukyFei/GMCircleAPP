@@ -77,6 +77,8 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,assign)BOOL isNear; // 靠近标志位，开始扫描后，如果还是靠近就不再开启扫描服务
 
+// 定位服务是否可用
+- (void)enableLocaitonService;
 
 //开始监控ibeacon
 - (void)beginMonitorBeacon;

@@ -15,6 +15,8 @@
 		0256BB201E51AAC700476DC0 /* BTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB1A1E51AAC700476DC0 /* BTCell.m */; };
 		0256BB291E51B12000476DC0 /* GMQOpenDoorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */; };
 		0256BB2C1E51B26F00476DC0 /* GMQOpenDoorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */; };
+		0264B45C1E6D65B000BAD2FB /* opendoor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0264B45B1E6D65B000BAD2FB /* opendoor.xcassets */; };
+		0264B45F1E6D664200BAD2FB /* OpenDoorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264B45E1E6D664200BAD2FB /* OpenDoorController.m */; };
 		330ADBC81D8FD69F0066A20E /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 330ADBC71D8FD69F0066A20E /* UserInfo.m */; };
 		333D485C1D6FE539004E1F84 /* MyExpressFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333D485B1D6FE539004E1F84 /* MyExpressFeeModel.m */; };
 		333F6D371D5C0C2F0021A2FD /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333F6D361D5C0C2F0021A2FD /* HomeCell.m */; };
@@ -351,6 +353,9 @@
 		0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMQOpenDoorController.xib; sourceTree = "<group>"; };
 		0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMQOpenDoorController.h; sourceTree = "<group>"; };
 		0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMQOpenDoorController.m; sourceTree = "<group>"; };
+		0264B45B1E6D65B000BAD2FB /* opendoor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = opendoor.xcassets; sourceTree = "<group>"; };
+		0264B45D1E6D664200BAD2FB /* OpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDoorController.h; sourceTree = "<group>"; };
+		0264B45E1E6D664200BAD2FB /* OpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDoorController.m; sourceTree = "<group>"; };
 		02B6E6A61E5AFEAB00531ABD /* MacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
 		330ADBC61D8FD69F0066A20E /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		330ADBC71D8FD69F0066A20E /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
@@ -985,6 +990,8 @@
 				0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */,
 				0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */,
 				0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */,
+				0264B45D1E6D664200BAD2FB /* OpenDoorController.h */,
+				0264B45E1E6D664200BAD2FB /* OpenDoorController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1198,6 +1205,7 @@
 				0256BB181E51AAC700476DC0 /* Views */,
 				3358E9951D7D51D100075D33 /* OpenDoorViewController.h */,
 				3358E9961D7D51D100075D33 /* OpenDoorViewController.m */,
+				0264B45B1E6D65B000BAD2FB /* opendoor.xcassets */,
 			);
 			path = OpenDoor;
 			sourceTree = "<group>";
@@ -2587,7 +2595,7 @@
 				TargetAttributes = {
 					335BC0101D597EE300D4ABF1 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 7GLH8K6J8U;
+						DevelopmentTeam = 9HWN6UL8PS;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -2658,6 +2666,7 @@
 				336EB59E1D62DE4500C43150 /* right_arrow@2x.png in Resources */,
 				B6EA93EE1D7FEAAB00BD0FA0 /* read_me.txt in Resources */,
 				3371D7B71D5B255800338D70 /* IQKeyboardManager.bundle in Resources */,
+				0264B45C1E6D65B000BAD2FB /* opendoor.xcassets in Resources */,
 				336EB59D1D62DE4500C43150 /* right_arrow.png in Resources */,
 				336EB59C1D62DE4500C43150 /* left_arrow@2x.png in Resources */,
 				B6C8AAC11E1B82E200D5BCA4 /* Info.plist in Resources */,
@@ -2882,6 +2891,7 @@
 				B671C56E1DD31CEF009D92CE /* MASCompositeConstraint.m in Sources */,
 				330ADBC81D8FD69F0066A20E /* UserInfo.m in Sources */,
 				B671C5321DD309B4009D92CE /* VShowImgs.m in Sources */,
+				0264B45F1E6D664200BAD2FB /* OpenDoorController.m in Sources */,
 				B671C54F1DD319FB009D92CE /* BrowserScroView.m in Sources */,
 				B671C51D1DD2FB31009D92CE /* BaoShiViewController.m in Sources */,
 				B671059C1DD5723C005BAF5F /* YMTableView.m in Sources */,
@@ -3075,8 +3085,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chen zhou (9FZE96H5L4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chen zhou (9FZE96H5L4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = D8DQFT8RU5;
@@ -3122,8 +3132,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: chen zhou (9FZE96H5L4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: chen zhou (9FZE96H5L4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D8DQFT8RU5;
@@ -3154,9 +3164,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
-				DEVELOPMENT_TEAM = 6TW7VRG635;
+				CODE_SIGN_IDENTITY = "iPhone Developer: chen zhou (9FZE96H5L4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9HWN6UL8PS;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TradeCenterCircle/GMQ.pch";
 				INFOPLIST_FILE = TradeCenterCircle/Info.plist;
@@ -3172,10 +3182,10 @@
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/libWeChatSDK.a\"",
 					"$(PROJECT_DIR)/TradeCenterCircle/HomePageView/OpenDoor",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.gmopendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
-				PROVISIONING_PROFILE_SPECIFIER = producti;
+				PROVISIONING_PROFILE = "d9649425-9e32-45fd-86ab-639abd65f74d";
+				PROVISIONING_PROFILE_SPECIFIER = GMOpenDoorXcode8;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3188,9 +3198,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: CHINA WORLD PROPERTY&HOTEL MANAGEMENT CO.LTD. (6TW7VRG635)";
-				DEVELOPMENT_TEAM = 6TW7VRG635;
+				CODE_SIGN_IDENTITY = "iPhone Developer: chen zhou (9FZE96H5L4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9HWN6UL8PS;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TradeCenterCircle/GMQ.pch";
 				INFOPLIST_FILE = TradeCenterCircle/Info.plist;
@@ -3206,10 +3216,10 @@
 					"\"$(SRCROOT)/TradeCenterCircle/ThirdLibrary/SDKExport/libWeChatSDK.a\"",
 					"$(PROJECT_DIR)/TradeCenterCircle/HomePageView/OpenDoor",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.opendoor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.gmopendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "37dca21e-88c9-4d09-a0d0-cfe200f751d5";
-				PROVISIONING_PROFILE_SPECIFIER = producti;
+				PROVISIONING_PROFILE = "d9649425-9e32-45fd-86ab-639abd65f74d";
+				PROVISIONING_PROFILE_SPECIFIER = GMOpenDoorXcode8;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

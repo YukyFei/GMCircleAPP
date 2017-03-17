@@ -113,9 +113,10 @@ static RefreshManager *manager = nil;
 /*网页加载异常弹出提示框*/
 -(void)popAlertView
 {
-    // 在session失效，需要重新登录前，关闭扫描
+    //在session失效，需要重新登录前，关闭扫描 --fyb
     AppDelegate * delegate = [AppDelegate sharedInstance];
     [delegate.openDoorTool stopMonitorForRegion:nil];
+    [USER_DEFAULT setObject:nil forKey:@"User_CardNum"];
 
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"数据加载有误，请重新登录" message:@"亲，登录成功后才能浏览页面哦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
     [alertView show];
