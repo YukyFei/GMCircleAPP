@@ -41,31 +41,53 @@
 
 @implementation AppDelegate
 
-/*
- 
- 13651062984=0000123456
- 13601188574=0000123457
- 13701389799=0000123458
- 18911987658=0000123459
- 15811265061=0000123460
- 18911987510=0000123461
- 13717917814=0000123462
- 13910801440=0000123463
- 13911719607=0000123464
- 13910215761=0000123465
- 13911718056=0000123466
- 15011508521=0000123467
- #323753
- 13693008026=0000123468
- #613728
- 18511636347=0000123469
- */
+// fyb
+- (NSMutableArray *)phoneNumAndCardNum
+{
+    if (!_phoneNumAndCardNum) {
+        
+        NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"CardNum" ofType:@"plist"];
+        _phoneNumAndCardNum = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+
+    }
+    return _phoneNumAndCardNum;
+}
+
+
 - (NSMutableArray *)phoneNum_cardNum
 {
     if (!_phoneNum_cardNum) {
         
         _phoneNum_cardNum = [NSMutableArray array];
         
+        
+
+#ifdef OpenDoor_Debug
+
+        NSString * plistPath = [[NSBundle mainBundle] pathForResource:@"userCardNum" ofType:@"plist"];
+        _phoneNum_cardNum = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        NSLog(@"array:%@",_phoneNum_cardNum);
+
+#else
+        /*
+         
+         13651062984=0000123456
+         13601188574=0000123457
+         13701389799=0000123458
+         18911987658=0000123459
+         15811265061=0000123460
+         18911987510=0000123461
+         13717917814=0000123462
+         13910801440=0000123463
+         13911719607=0000123464
+         13910215761=0000123465
+         13911718056=0000123466
+         15011508521=0000123467
+         #323753
+         13693008026=0000123468
+         #613728
+         18511636347=0000123469
+         */
         [_phoneNum_cardNum addObject:@{@"13651062984":@"123456"}];
         [_phoneNum_cardNum addObject:@{@"13601188574":@"123457"}];
         [_phoneNum_cardNum addObject:@{@"13701389799":@"123458"}];
@@ -82,6 +104,55 @@
         [_phoneNum_cardNum addObject:@{@"18511636347":@"123469"}];
         [_phoneNum_cardNum addObject:@{@"13910269588":@"123470"}];
         [_phoneNum_cardNum addObject:@{@"18511917728":@"123471"}];
+        
+        //真实卡号
+        /*
+         姓名	电话	卡号
+         李波	13601034657	1479841010
+         李京育	13911396170	2027952770
+         许方	13911260643	2027964714
+         蒋作	13811515945	3292289920
+         苏昊	18601206038	1173363360
+         万萌	13426091020	1173339387
+         刘学军	13601188574	3039225459 3368305087	3368321550	202796483
+         曹月影	13911718056	3039123973
+         董宜蕾	13701342101	2027966969
+         闫莹莹	13911068916	1213667945
+         黄燕鸿	15901296528	678153499
+         王海默	13910416752	2027965683
+         潘莹	13911461461	3039217779
+         翁水莲	18811059442	678153617
+         黄琼	13911282391	2027971150
+         冯金鹏	13811001139	1958027678
+         潘虹	13701322842	2027968629
+         高梦雅	15811445403	678146432
+         刘娟	18611112640	2027964946
+         王晨	15011508521	1173334321
+         */
+        
+        [_phoneNum_cardNum addObject:@{@"13601034657":@"1479841010"}];
+        [_phoneNum_cardNum addObject:@{@"13911396170":@"2027952770"}];
+        [_phoneNum_cardNum addObject:@{@"13911260643":@"2027964714"}];
+        [_phoneNum_cardNum addObject:@{@"13811515945":@"3292289920"}];
+        [_phoneNum_cardNum addObject:@{@"18601206038":@"1173363360"}];
+        [_phoneNum_cardNum addObject:@{@"13426091020":@"1173339387"}];
+        [_phoneNum_cardNum addObject:@{@"13601188574":@"3039225459"}];
+        [_phoneNum_cardNum addObject:@{@"13911718056":@"3039123973"}];
+        [_phoneNum_cardNum addObject:@{@"13701342101":@"2027966969"}];
+        [_phoneNum_cardNum addObject:@{@"13911068916":@"1213667945"}];
+        [_phoneNum_cardNum addObject:@{@"15901296528":@"678153499"}];
+        [_phoneNum_cardNum addObject:@{@"13910416752":@"2027965683"}];
+        [_phoneNum_cardNum addObject:@{@"13911461461":@"3039217779"}];
+        [_phoneNum_cardNum addObject:@{@"18811059442":@"678153617"}];
+        [_phoneNum_cardNum addObject:@{@"13911282391":@"2027971150"}];
+        [_phoneNum_cardNum addObject:@{@"13811001139":@"1958027678"}];
+        
+        [_phoneNum_cardNum addObject:@{@"13701322842":@"2027968629"}];
+        [_phoneNum_cardNum addObject:@{@"15811445403":@"678146432"}];
+        [_phoneNum_cardNum addObject:@{@"18611112640":@"2027964946"}];
+        [_phoneNum_cardNum addObject:@{@"15011508521":@"1173334321"}];
+#endif
+        
     }
     return _phoneNum_cardNum;
 }
@@ -89,11 +160,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSLog(@"self.phonenum : %@",self.phoneNumAndCardNum);
     [NSThread sleepForTimeInterval:3];//设置启动页面时间
     
-    NSLog(@"%d",[@"0000123469" intValue]);
-    
      [self loadVersion];
+    
     /***友盟推送相关**/
     //设置 AppKey 及 LaunchOptions
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
@@ -749,8 +821,8 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-#pragma mark ---  蓝牙后台运行设置
 
+// fyb
 #pragma mark 蓝牙设置
 - (void)bluetoothInit {
     
@@ -792,6 +864,7 @@
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 
+#pragma mark ---  蓝牙后台运行设置
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 
     NSLog(@"进入后台");

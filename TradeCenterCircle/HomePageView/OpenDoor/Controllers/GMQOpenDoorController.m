@@ -98,7 +98,7 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"BTMac"]) {
         self.BTMacTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"BTMac"];
         
-        self.tool.BTMac_Address = [self.BTMacTextField.text uppercaseString];
+        
     }
     
 }
@@ -365,7 +365,6 @@
     if(textField == self.BTMacTextField && ![textField.text isEqualToString:@""]) {
         
         [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:@"BTMac"];
-        self.tool.BTMac_Address = [self.BTMacTextField.text uppercaseString];
         [self.tool babyDelegateWithBabyBluetooth:self.tool.babyBlueTooth];
         
     }

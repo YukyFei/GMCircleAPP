@@ -75,8 +75,8 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_2];
         
 #else
-        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_1];
-        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_2];
+//        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_1];
+//        [_beaconMac_BTMac setObject:BTMacAddressTest1 forKey:BeaconMacAddressTest1_2];
         
         [_beaconMac_BTMac setObject:BTMacAddress1 forKey:BeaconMacAddress1_1];
         [_beaconMac_BTMac setObject:BTMacAddress1 forKey:BeaconMacAddress1_2];
@@ -85,8 +85,8 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         [_beaconMac_BTMac setObject:BTMacAddress2 forKey:BeaconMacAddress2_2];
         
         
-//        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_1];
-//        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_2];
+        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_1];
+        [_beaconMac_BTMac setObject:BTMacAddress3 forKey:BeaconMacAddress3_2];
         
         [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress4_1];
         [_beaconMac_BTMac setObject:BTMacAddress4 forKey:BeaconMacAddress4_2];
@@ -291,15 +291,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     return self;
 }
 
-// 登录成功后，将用户卡号保存在本地
-- (NSString *)cardNum {
-
-    _cardNum = [USER_DEFAULT objectForKey:@"User_CardNum"];
-    return _cardNum;
-}
-
-
-
 #pragma mark ibeacon定位相关方法
 
 /*----激活定位服务----*/
@@ -399,7 +390,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         }
         
         self.isMonitoringBeaconRegion = NO;
-        
+        self.isNear = NO;
         // 停止ibeacon扫描（处于前台模式时，ibeacon信号值是通过蓝牙扫描拿到的）
         if([self.centralMgr isScanning])
             [self.centralMgr stopScan];
@@ -505,7 +496,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         return;
     }
     NSLog(@"--------------------分割线------------------------");
-    if(!self.isNear) {
+    if(!self.hasSendData) {
     
         // 后台情况,通过babybluetooth扫描到的ibeacon信号作为参考值
         if([UIApplication sharedApplication].applicationState == UIApplicationStateBackground)
@@ -530,6 +521,10 @@ static BOOL isScreenLocked; //屏幕是否锁屏
                         [SVProgressHUD dismissWithError:@"请查看蓝牙是否打开！"];
                     }
                     
+                }
+                else {
+                    
+                    NSLog(@"靠近状态");
                 }
                 
             }
@@ -714,10 +709,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         {
             return [self isScanedBTMacOKWith:advertisementData andGivenBTMac:self.currentBTMac];
         }
-        else if(self.BTMac_Address && self.BTMac_Address.length>0)
-        {
-            return YES;
-        }
         else
         {
             return NO;
@@ -733,8 +724,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         [weakSelf.babyBlueTooth cancelScan];
         
         self.currentBTMac = nil;
-        
-
         self.peripheral = peripheral;
         
     }];
@@ -752,6 +741,20 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         
     }];
     
+    // 蓝牙断开回调
+    [babyBT setBlockOnDisconnect:^(CBCentralManager *central, CBPeripheral *peripheral, NSError *error) {
+        
+        self.isNear = NO;
+        if (error.code == 7) { //硬件主动断开
+            
+            return;
+        } else if (error.code == 10) { //The connection has failed unexpectedly.
+            
+            
+            return;
+        }
+    }];
+    
     // 发现外设的service
     [babyBT setBlockOnDiscoverServices:^(CBPeripheral *peripheral, NSError *error) {
         
@@ -766,20 +769,7 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         for (CBCharacteristic * tempChar in service.characteristics) {
             
             if ([[tempChar.UUID.UUIDString lowercaseString] isEqualToString:NOTIFY_UUID]) {
-//                NSLog(@"READ");
-                
-//                CBCharacteristicProperties property = tempChar.properties;
-//
-//                [weakBabyBT notify:peripheral characteristic:tempChar block:^(CBPeripheral *peripheral, CBCharacteristic *characteristics, NSError *error) {
-//                    
-//                    
-//                    if(error)
-//                    {
-//                        //NSLog(@"设置Notify失败:%@",error);
-//                    }
-//                    //NSLog(@"设置notify");
-//                }];
-                
+  
             }
             else if ([[tempChar.UUID.UUIDString lowercaseString] isEqualToString:WRITE_UUID]) {
                 NSLog(@"发现写特征。。。");
@@ -790,31 +780,16 @@ static BOOL isScreenLocked; //屏幕是否锁屏
                 if(!self.hasSendData)
                 {
                     NSData * openDoorData = nil;
-                    if(self.cardNum && (![self.cardNum isEqualToString:@""]))
-                    {
-                        if([self.cardNum containsString:@"0x"])
-                        {
-                            NSString *str = self.cardNum;
-                            //先以16为参数告诉strtoul字符串参数表示16进制数字，然后使用0x%X转为数字类型
-                            unsigned long cardNumber = strtoul([str UTF8String],0,16);
-                            //strtoul如果传入的字符开头是“0x”,那么第三个参数是0，也是会转为十六进制的,这样写也可以：
-//                            unsigned long red2 = strtoul([str UTF8String],0,0);
-                            NSLog(@"转换完的数字为：%lx",cardNumber);
-                            
-                            int testNum = (int)cardNumber;
-                            openDoorData = [self setPackageWithCardNum:testNum];
-                        }
-                        else
-                        {
-                            int cardNum = [self.cardNum intValue];
-                            openDoorData = [self setPackageWithCardNum:cardNum];
-                        }
-                    }
-                    else
-                        openDoorData = [self setPackageWithCardNum:100];
+                    self.cardNum = [USER_DEFAULT objectForKey:@"User_CardNum"];
+                    NSLog(@"卡号string：%@",self.cardNum);
+                    
+                    unsigned int test = (unsigned int)[self.cardNum floatValue];
+                    NSLog(@"卡号int：%u",test);
+                    unsigned int cardNum = (unsigned int)test;
+                    NSLog(@"卡号unsigned：%u",cardNum);
+                    openDoorData = [self setPackageWithCardNum:cardNum];
                     
                     NSLog(@"发送卡号数据...");
-                    //                [peripheral writeValue:openDoorData forCharacteristic:tempChar type:CBCharacteristicWriteWithoutResponse];
                     
                     [peripheral writeValue:openDoorData forCharacteristic:tempChar type:CBCharacteristicWriteWithoutResponse];
                     self.hasSendData = YES; //发送过数据后，置为YES，在重新扫描连接时，延时执行
@@ -887,14 +862,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
         NSLog(@"成功取消所有设备连接");
         self.peripheral = nil;
         self.isConnected = NO;
-        
-        
-//        [self startMonitorForRegion:nil]; // 断开连接后，不重新启动监控
-        
-//        if([self.delegate respondsToSelector:@selector(openDoorTool:didDisconnectBlueToothWithBabyBluetooth:)])
-//        {
-//            [self.delegate openDoorTool:self didDisconnectBlueToothWithBabyBluetooth:self.babyBlueTooth];
-//        }
     }];
     
     
@@ -911,41 +878,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     }];
     
 }
-
-/**
- *  刷新信号值
- *
- *  @return 无
- */
-
-//- (void)updateBTDeviceInfoWithPeripheral:(CBPeripheral *)peripheral andRssi:(NSNumber *)RSSI {
-//    for (CBPeripheral * temp in self.devicesArray) {
-//        
-//        if ([temp.name isEqualToString:peripheral.name]) {
-//            
-//            //已经扫描过某个设备,将最新的信号值更新
-//            NSUInteger index = [self.devicesArray indexOfObject:temp];
-//            [self.devicesRSSIArray replaceObjectAtIndex:index withObject:RSSI];
-//        }
-//        else if(temp == [self.devicesArray lastObject])
-//        {
-//            //新增设备，添加到devicesArray中
-//            [self.devicesArray addObject:peripheral];
-//            [self.devicesRSSIArray addObject:RSSI];
-//        }
-//        else
-//        {
-//            continue;
-//        }
-//        
-//        
-//    }
-//    
-////    if ([self.delegate respondsToSelector:@selector(openDoorTool:refreshPeripherals:andRSSIArray:)]) {
-////        
-////        [self.delegate openDoorTool:self refreshPeripherals:self.devicesArray andRSSIArray:self.devicesRSSIArray];
-////    }
-//}
 
 #pragma mark 设置扫描参数：涉及到后台要扫描的蓝牙service，查找的Characteristic，扫描和连接的Options，程序一开始初始化
 // 设置扫描参数
@@ -1190,13 +1122,13 @@ static BOOL isScreenLocked; //屏幕是否锁屏
 
 
 #pragma mark 拼包---开门数据
-- (NSData *)setPackageWithCardNum:(int)cardNum
+- (NSData *)setPackageWithCardNum:(unsigned int)cardNum
 {
     //包头（0xa3,0xef），有效数据，包尾(oxef,oxa3)，校验位（异或结果）
     NSLog(@"sizeof(%lu)",sizeof(cardNum));
-    int a = cardNum; //卡号
-    
-    //NSLog(@"卡号：%02x",a);
+    unsigned int a = cardNum; //卡号
+    NSLog(@"%u,%u",a,cardNum)
+    NSLog(@"卡号：%02xu",a);
     Byte contentData[4] = {0}; //有效数据
     
     Byte * tmp = (Byte *)&a;
@@ -1259,10 +1191,6 @@ static BOOL isScreenLocked; //屏幕是否锁屏
     
     // 当前mac地址和已知mac列表对比，相等则可连接
     if([btMacAddress isEqualToString:macStr]) // 扫描到的蓝牙mac是已知的mac地址
-    {
-        return YES;
-    }
-    else if(self.BTMac_Address && self.BTMac_Address.length > 0)
     {
         return YES;
     }

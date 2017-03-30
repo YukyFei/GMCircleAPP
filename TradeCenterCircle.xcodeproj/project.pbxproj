@@ -15,8 +15,10 @@
 		0256BB201E51AAC700476DC0 /* BTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB1A1E51AAC700476DC0 /* BTCell.m */; };
 		0256BB291E51B12000476DC0 /* GMQOpenDoorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */; };
 		0256BB2C1E51B26F00476DC0 /* GMQOpenDoorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */; };
+		025A32C51E7FA3A7007857B8 /* userCardNum.plist in Resources */ = {isa = PBXBuildFile; fileRef = 025A32C41E7FA3A7007857B8 /* userCardNum.plist */; };
 		0264B45C1E6D65B000BAD2FB /* opendoor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0264B45B1E6D65B000BAD2FB /* opendoor.xcassets */; };
 		0264B45F1E6D664200BAD2FB /* OpenDoorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0264B45E1E6D664200BAD2FB /* OpenDoorController.m */; };
+		02B8CDB91E7FC7E2003217CE /* CardNum.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02B8CDB81E7FC7E2003217CE /* CardNum.plist */; };
 		330ADBC81D8FD69F0066A20E /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 330ADBC71D8FD69F0066A20E /* UserInfo.m */; };
 		333D485C1D6FE539004E1F84 /* MyExpressFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 333D485B1D6FE539004E1F84 /* MyExpressFeeModel.m */; };
 		333F6D371D5C0C2F0021A2FD /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 333F6D361D5C0C2F0021A2FD /* HomeCell.m */; };
@@ -353,10 +355,12 @@
 		0256BB281E51B12000476DC0 /* GMQOpenDoorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GMQOpenDoorController.xib; sourceTree = "<group>"; };
 		0256BB2A1E51B26F00476DC0 /* GMQOpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMQOpenDoorController.h; sourceTree = "<group>"; };
 		0256BB2B1E51B26F00476DC0 /* GMQOpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMQOpenDoorController.m; sourceTree = "<group>"; };
+		025A32C41E7FA3A7007857B8 /* userCardNum.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = userCardNum.plist; sourceTree = "<group>"; };
 		0264B45B1E6D65B000BAD2FB /* opendoor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = opendoor.xcassets; sourceTree = "<group>"; };
 		0264B45D1E6D664200BAD2FB /* OpenDoorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenDoorController.h; sourceTree = "<group>"; };
 		0264B45E1E6D664200BAD2FB /* OpenDoorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDoorController.m; sourceTree = "<group>"; };
 		02B6E6A61E5AFEAB00531ABD /* MacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
+		02B8CDB81E7FC7E2003217CE /* CardNum.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardNum.plist; sourceTree = "<group>"; };
 		330ADBC61D8FD69F0066A20E /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		330ADBC71D8FD69F0066A20E /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		333D485A1D6FE539004E1F84 /* MyExpressFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyExpressFeeModel.h; sourceTree = "<group>"; };
@@ -1015,6 +1019,8 @@
 				02B6E6A61E5AFEAB00531ABD /* MacroDefinition.h */,
 				0256BB161E51AAC700476DC0 /* OpenDoorTool.h */,
 				0256BB171E51AAC700476DC0 /* OpenDoorTool.m */,
+				025A32C41E7FA3A7007857B8 /* userCardNum.plist */,
+				02B8CDB81E7FC7E2003217CE /* CardNum.plist */,
 			);
 			path = OpenDoorTool;
 			sourceTree = "<group>";
@@ -2660,12 +2666,14 @@
 				3371CB711D5AFCFC00338D70 /* MJRefresh.bundle in Resources */,
 				335BC01F1D597EE300D4ABF1 /* Main.storyboard in Resources */,
 				3371CB841D5AFD7700338D70 /* MBProgressHUD.bundle in Resources */,
+				02B8CDB91E7FC7E2003217CE /* CardNum.plist in Resources */,
 				B655009A1E00DB8F00C05D15 /* gmq_notice.png in Resources */,
 				B63E6F781E027558001941E5 /* SelectionViewCell.xib in Resources */,
 				B6EA93EF1D7FEAAB00BD0FA0 /* README.txt in Resources */,
 				336EB59E1D62DE4500C43150 /* right_arrow@2x.png in Resources */,
 				B6EA93EE1D7FEAAB00BD0FA0 /* read_me.txt in Resources */,
 				3371D7B71D5B255800338D70 /* IQKeyboardManager.bundle in Resources */,
+				025A32C51E7FA3A7007857B8 /* userCardNum.plist in Resources */,
 				0264B45C1E6D65B000BAD2FB /* opendoor.xcassets in Resources */,
 				336EB59D1D62DE4500C43150 /* right_arrow.png in Resources */,
 				336EB59C1D62DE4500C43150 /* left_arrow@2x.png in Resources */,
@@ -3199,7 +3207,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: chen zhou (9FZE96H5L4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 9HWN6UL8PS;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TradeCenterCircle/GMQ.pch";
@@ -3218,8 +3226,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fyb.gmopendoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d9649425-9e32-45fd-86ab-639abd65f74d";
-				PROVISIONING_PROFILE_SPECIFIER = GMOpenDoorXcode8;
+				PROVISIONING_PROFILE = "e3ae037b-346e-47d9-89ab-9126e45e7cee";
+				PROVISIONING_PROFILE_SPECIFIER = GMOpenDoor0315;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

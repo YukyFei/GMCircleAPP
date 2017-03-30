@@ -32,21 +32,18 @@
 //#define BeaconMacAddress2  @"00:cd:ff:00:35:94" // BR517302
 
 
-#define OpenDoor_Debug
+//#define OpenDoor_Debug
 
 #ifdef OpenDoor_Debug //测试
 
-#define BeaconMacAddressTest1_1  @"00:cd:ff:0e:50:f2" // BR518064
-#define BeaconMacAddressTest1_2  @"00:cd:ff:00:50:f1" // BR518065
+#define BeaconMacAddressTest1_1  @"00:cd:ff:0e:50:e9" // BR518061
+#define BeaconMacAddressTest1_2  @"00:cd:ff:0e:50:e8" // BR518062
 //#define BTMacAddressTest1        @"08:7C:BE:23:34:A2" // 白盒子
 
-#define BeaconMinorTest @"7"
+#define BeaconMinorTest @"1"
 #define BTMacAddressTest1      @"08:7C:BE:23:33:77" // 测试模块
-#else   //现场
 
-#define BeaconMacAddressTest1_1  @"00:cd:ff:0e:50:f2" // BR518064 10 7
-#define BeaconMacAddressTest1_2  @"00:cd:ff:00:50:e9" // BR518065 10 1
-#define BTMacAddressTest1        @"08:7C:BE:23:33:77" // 测试模块
+#else   //现场
 
 #define BTMacAddress1      @"08:7C:BE:23:34:C3" //1号板
 #define BTMacAddress2      @"08:7C:BE:23:34:07" //2号板
@@ -69,8 +66,11 @@
 //#define BeaconMacAddress3_1  @"00:cd:ff:0e:50:f0" //BR518066
 //#define BeaconMacAddress3_2  @"00:cd:ff:0e:50:44" //BR518074（无法配置minor）
 
-#define BeaconMacAddress3_1  @"00:cd:ff:0e:50:f2" // BR518064
-#define BeaconMacAddress3_2  @"00:cd:ff:0e:50:f1" // BR518065
+//#define BeaconMacAddress3_1  @"00:cd:ff:0e:50:f2" // BR518064
+//#define BeaconMacAddress3_2  @"00:cd:ff:0e:50:f1" // BR518065
+
+#define BeaconMacAddress3_1  @"00:cd:ff:0e:50:e9" // BR518061
+#define BeaconMacAddress3_2  @"00:cd:ff:0e:50:e8" // BR518062
 
 #define BeaconMacAddress4_1  @"00:cd:ff:0e:50:f6" //BR518069
 #define BeaconMacAddress4_2  @"00:cd:ff:0e:50:77" //BR518071
@@ -79,7 +79,7 @@
 #define BeaconMajor   @"10"
 #define BeaconMinor_1 @"1"
 #define BeaconMinor_2 @"2"
-#define BeaconMinor_3 @"7"// 由于3号板beacon坏，临时改为7
+#define BeaconMinor_3 @"1"// 由于3号板beacon坏，临时改为7
 #define BeaconMinor_4 @"4"
 #define BeaconMinor_5 @"5"
 #define BeaconMinor_6 @"6"
@@ -114,10 +114,10 @@
 #else
 
 #define RSSI_Count 2
-#define RSSI_Standard_Fore (-50.0)
-#define RSSI_Strong_Fore   (-45.0)
-#define RSSI_Standard_Back (-60.0)
-#define RSSI_Strong_Back   (-55.0)
+#define RSSI_Standard_Fore (-45.0)
+#define RSSI_Strong_Fore   (-40.0)
+#define RSSI_Standard_Back (-50.0)
+#define RSSI_Strong_Back   (-45.0)
 
 #endif
 

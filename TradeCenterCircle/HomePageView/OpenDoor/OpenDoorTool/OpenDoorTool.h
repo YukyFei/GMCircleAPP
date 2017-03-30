@@ -124,7 +124,6 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong)NSDate * beginConnectDate; //开始时间
 @property(nonatomic,strong)NSDate * endConnectDate; //连接成功时间
 
-@property(nonatomic,strong) NSString * BTMac_Address; // 用户输入的蓝牙的mac
 
 // 设置扫描参数
 - (void)setBTOptions;
